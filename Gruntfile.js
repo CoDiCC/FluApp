@@ -167,6 +167,15 @@ module.exports = function (grunt) {
           ]
         }]
       },
+      docs: {
+        files: [{
+          dot: true,
+          src: [
+            'docs/{,*/}*',
+            '!docs/.git{,*/}*'
+          ]
+        }]
+      },
       server: '.tmp'
     },
 
@@ -339,7 +348,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       dist: {
         options: {
-          module: 'fluAppApp',
+          module: 'fluApp',
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
@@ -479,6 +488,7 @@ module.exports = function (grunt) {
     'filerev',
     'usemin',
     'htmlmin',
+    'clean:docs',
     'copy:docs'
   ]);
 
