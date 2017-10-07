@@ -1,0 +1,40 @@
+<header>
+  <h2>Registos</h2>
+</header>
+<section id="registos" class="table-responsive">
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading panel-button-top">
+      <div class="btn btn-success"
+           ng-csv="getArray"
+           data-csv-header="getHeaders()"
+           data-csv-column-order="getHeaders()"
+           data-quote-strings="true"
+           data-filename="registo.csv">
+        <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Guardar como CSV
+      </div>
+      <div class="btn btn-danger" ng-click="reset()"><i class="fa fa-eraser" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Reset</div>
+      <div class="btn btn-danger" ng-click="deleteRecord()"><i class="fa fa-minus-square" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Apagar registo</div>
+    </div>
+    <div class="panel-table-wrapper">
+      <table class="table table-condensed table-hover table-overflow-x">
+        <thead class="thead-inverse">
+        <tr>
+          <th></th>
+          <th>#</th>
+          <th ng-repeat="header in headers">{{::header}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in registos track by $index" ng-class="{'info': r.$$selected}" ng-click="r.$$selected = !r.$$selected">
+          <th class="table-select-row">
+            <i class="fa" ng-class="{'fa-square-o': !r.$$selected, 'fa-check-square-o': r.$$selected}" aria-hidden="true"></i>
+          </th>
+          <th>{{ $index }}</th>
+          <td ng-repeat="prop in props">{{::item[prop]}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
