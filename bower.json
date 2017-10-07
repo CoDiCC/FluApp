@@ -9,7 +9,7 @@
     "angular-touch": "^1.6.6",
     "ng-csv": "^0.3.6",
     "angular-schema-form": "^1.0.0",
-    "angular-schema-form-bootstrap": "https://github.com/tivie/angular-schema-form-bootstrap.git#tivie",
+    "angular-schema-form-bootstrap": "https://github.com/tivie/angular-schema-form-bootstrap.git#develop",
     "angular-bootstrap": "^2.5.0"
   },
   "devDependencies": {
