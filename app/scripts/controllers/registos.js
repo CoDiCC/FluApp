@@ -11,7 +11,6 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', funct
 
   $scope.headers = registos.getHeaders(true);
   $scope.props = registos.getProps();
-
   $scope.registos = registos.getAll();
 
   $scope.getArray = function () {
@@ -20,6 +19,10 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', funct
 
   $scope.getHeaders = function () {
     return registos.getHeaders();
+  };
+
+  $scope.getProps = function () {
+    return registos.getProps();
   };
 
   $scope.reset = function () {

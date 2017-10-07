@@ -25,29 +25,7 @@ angular.module('fluApp').factory('registos', ['schema', function (schema) {
     }
   }
 
-  var data = [
-    {
-      hospital: 'CHO',
-      datadeadmissao: '03-06-1985',
-      numprocessoclinico: 1234,
-      sexo: 'M',
-      '$$selected': false
-    },
-    {
-      hospital: 'CHLN',
-      datadeadmissao: '01-06-1923',
-      numprocessoclinico: 4567,
-      sexo: 'F',
-      '$$selected': false
-    },
-    {
-      hospital: 'CHUCH',
-      datadeadmissao: '01-08-1993',
-      numprocessoclinico: 4567,
-      sexo: 'I',
-      '$$selected': false
-    }
-  ];
+  var data = [];
 
   var checkInterface = function (registo) {
     if (!registo.hasOwnProperty('$$selected')) {

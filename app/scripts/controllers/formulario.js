@@ -12,7 +12,7 @@ angular.module('fluApp').controller('FormularioCtrl', ['$scope', 'registos', 'sc
 
   $scope.schema = schema;
 
-  var formDef = [
+  $scope.form = [
     {
       type: "fieldset",
       title: "Informações gerais",
@@ -137,13 +137,9 @@ angular.module('fluApp').controller('FormularioCtrl', ['$scope', 'registos', 'sc
     }
   ];
 
-  $scope.form = formDef;
-
   $scope.onSubmit = function (registoForm) {
     // First we broadcast an event so all fields validate themselves
     $scope.$broadcast('schemaFormValidate');
-
-    console.log(registoForm.$valid);
 
     if (registoForm.$valid) {
       var registo = angular.copy($scope.model);
