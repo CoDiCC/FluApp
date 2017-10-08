@@ -13,7 +13,6 @@ angular.module('fluApp').controller('FormularioCtrl', ['$scope', 'registos', 'sc
   $scope.form = formDefinition;
 
   $scope.onSubmit = function (form) {
-
     // First we broadcast an event so all fields validate themselves
     $scope.$broadcast('schemaFormValidate');
 
@@ -25,13 +24,8 @@ angular.module('fluApp').controller('FormularioCtrl', ['$scope', 'registos', 'sc
       $scope.model = {};
       form.$setPristine();
       form.$setUntouched();
+      alert('Registo inserido com sucesso!');
     }
   };
-
-  /*
-  function dirtyFixForDateBug() {
-
-  }*/
-
 
 }]);
