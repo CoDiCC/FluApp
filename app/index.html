@@ -1,86 +1,99 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>FluApp</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<head>
+  <meta charset="utf-8">
+  <title>FluApp</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
 
-    <!-- build:css(app) styles/vendor.css -->
-    <link rel="stylesheet" href="styles/bootstrap.css">
-    <link rel="stylesheet" href="styles/font-awesome.css">
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Trocchi" rel="stylesheet">
 
-
-    <!-- build:css(.tmp) styles/style.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
+  <!-- build:css(app) styles/vendor.css -->
+  <link rel="stylesheet" href="styles/bootstrap.css">
+  <link rel="stylesheet" href="styles/font-awesome.css">
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- endbuild -->
 
 
-  </head>
-  <body ng-app="fluApp">
-    <!--[if lte IE 8]>
-      <p class="browsehappy">Está a usar um browser <strong>obsoleto</strong>. Por favor, contacte o seu administrador
-        de informática ou <a href="http://browsehappy.com/">atualize o seu browser</a> para poder utilizar este site.</p>
-    <![endif]-->
-
-    <!-- Add your site or application content here -->
-    <header id="main-header" class="container">
-      <div class="logo"><img src="images/logo.png"></div>
-      <div class="logo-text"><h1>FluApp</h1></div>
-    </header>
-
-    <div data-uib-tabset class="container tabs-wrapper">
-      <div uib-tab data-index="0" data-heading="Instruções">
-        <div ng-include="'views/instrucoes.html'"></div>
-      </div>
-
-      <div uib-tab data-index="1" data-heading="Formulário">
-        <div ng-include="'views/formulario.html'" ng-controller="FormularioCtrl"></div>
-      </div>
-
-      <div uib-tab data-index="2" data-heading="Registos">
-        <div ng-include="'views/registos.html'" ng-controller="RegistosCtrl"></div>
-      </div>
-    </div>
+  <!-- build:css(.tmp) styles/style.css -->
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/style.css">
+  <!-- endbuild -->
 
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+</head>
+<body ng-app="fluApp">
+<!--[if lte IE 8]>
+<p class="browsehappy">Está a usar um browser <strong>obsoleto</strong>. Por favor, contacte o seu administrador
+  de informática ou <a href="http://browsehappy.com/">atualize o seu browser</a> para poder utilizar este site.</p>
+<![endif]-->
 
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
-    -->
+<!-- Fixed header -->
+<header id="main-header">
+  <div id="header-container" class="container">
+    <div class="logo"><img src="images/logo.png"></div>
+    <div class="logo-text"><h1>FluApp</h1></div>
+  </div>
+</header>
+<!-- END Fixed header -->
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/ng-csv/build/ng-csv.min.js"></script>
-    <script src="bower_components/tv4/tv4.js"></script>
-    <script src="bower_components/angular-schema-form/dist/angular-schema-form.js"></script>
-    <script src="bower_components/angular-schema-form-bootstrap/dist/angular-schema-form-bootstrap.js"></script>
-    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+<div id="main-tabs" data-uib-tabset class="container tabs-wrapper">
+  <div uib-tab data-index="0" data-heading="Instruções">
+    <div ng-include="'views/instrucoes.html'"></div>
+  </div>
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/formulario.js"></script>
-    <script src="scripts/controllers/registos.js"></script>
-    <script src="scripts/services/registos.js"></script>
-    <script src="scripts/services/schema.js"></script>
-    <!-- endbuild -->
+  <div uib-tab data-index="1" data-heading="Formulário">
+    <div ng-include="'views/formulario.html'" ng-controller="FormularioCtrl"></div>
+  </div>
+
+  <div uib-tab data-index="2" data-heading="Registos">
+    <div ng-include="'views/registos.html'" ng-controller="RegistosCtrl"></div>
+  </div>
+</div>
+
+
+<footer id="main-footer">
+  <div class="container copyright">
+    <span>© 2017 Estevão Soares dos Santos</span>
+  </div>
+</footer>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID
+ <script>
+   !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+   (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+   r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+   }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+   ga('create', 'UA-XXXXX-X');
+   ga('send', 'pageview');
+</script>
+-->
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/ng-csv/build/ng-csv.min.js"></script>
+<script src="bower_components/tv4/tv4.js"></script>
+<script src="bower_components/angular-schema-form/dist/angular-schema-form.js"></script>
+<script src="bower_components/angular-schema-form-bootstrap/dist/angular-schema-form-bootstrap.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/controllers/formulario.js"></script>
+<script src="scripts/controllers/registos.js"></script>
+<script src="scripts/services/registos.js"></script>
+<script src="scripts/services/schema.js"></script>
+<script src="scripts/services/formdefinition.js"></script>
+<!-- endbuild -->
 </body>
 </html>
