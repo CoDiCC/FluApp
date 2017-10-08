@@ -15,8 +15,46 @@ angular.module('fluApp').factory('formDefinition', function () {
       items: [
         { key: 'hospital' },
         { key: 'numprocessoclinico' },
-        { key: 'datadeadmissao', type: 'date'},
-        { key: 'dataalta', type: 'date'},
+        {
+          key: 'datadeadmissao',
+          type: 'date',
+          validationMessage: {
+            'datadeadmissaoNoFuturo': 'Data de admissão não pode ser no futuro'
+          },
+          $validators: {
+            datadeadmissaoNoFuturo: function(data) {
+              if (!data) {
+                return true;
+              }
+              return !(new Date(data) > new Date());
+            }
+          }
+        },
+        {
+          key: 'dataalta',
+          type: 'date',
+          validationMessage: {
+            'altaAntesDeHospitalizacao': 'Data da Alta não pode ser anterior à Data de Admissão na UCI',
+            'altaNoFuturo': 'Data de alta não pode ser numa data futura'
+          },
+          $validators: {
+            altaAntesDeHospitalizacao: function(dataAlta, oldValue, form) {
+              if (!dataAlta) {
+                return true;
+              }
+              if (!form.datadeadmissao) {
+                return false;
+              }
+              return !(new Date(form.datadeadmissao) > new Date(dataAlta));
+            },
+            altaNoFuturo: function(dataAlta) {
+              if (!dataAlta) {
+                return true;
+              }
+              return !(new Date(dataAlta) > new Date());
+            }
+          }
+        },
         { key: 'sexo' },
         { key: 'datanascimento', type: 'date'},
         {
@@ -33,7 +71,21 @@ angular.module('fluApp').factory('formDefinition', function () {
           title: "Se óbito...",
           condition: 'model.obito === "Y"',
           items: [
-            { key: 'dataobito', type: 'date'},
+            {
+              key: 'dataobito',
+              type: 'date',
+              validationMessage: {
+                'dataobitoNoFuturo': 'Data do Óbito não pode ser no futuro'
+              },
+              $validators: {
+                dataobitoNoFuturo: function(data) {
+                  if (!data) {
+                    return true;
+                  }
+                  return !(new Date(data) > new Date());
+                }
+              }
+            },
             { key: 'causademorte' }
           ]
         }
@@ -66,7 +118,21 @@ angular.module('fluApp').factory('formDefinition', function () {
                 { key: 'dispneia' },
                 { key: 'odinofagia' },
                 { key: 'outrosintoma' },
-                { key: 'datainiciosintomas', type: "date" }
+                {
+                  key: 'datainiciosintomas',
+                  type: "date",
+                  validationMessage: {
+                    'inicioSintomasNoFuturo': 'Início de sintomas não pode ser no futuro'
+                  },
+                  $validators: {
+                    inicioSintomasNoFuturo: function(data) {
+                      if (!data) {
+                        return true;
+                      }
+                      return !(new Date(data) > new Date());
+                    }
+                  }
+                }
               ]
             }
           ]

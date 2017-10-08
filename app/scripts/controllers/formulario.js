@@ -16,9 +16,12 @@ angular.module('fluApp').controller('FormularioCtrl', ['$scope', 'registos', 'sc
     // First we broadcast an event so all fields validate themselves
     $scope.$broadcast('schemaFormValidate');
 
+    // custom validations
     console.log($scope.model);
 
-    if (form.$valid) {
+    if (form.$invalid) {
+      alert('O formulário tem erros. Por favor verifique a informação (assinalada a vermelho).');
+    } else {
       var registo = angular.copy($scope.model);
       registos.add(registo);
       $scope.model = {};
@@ -27,5 +30,25 @@ angular.module('fluApp').controller('FormularioCtrl', ['$scope', 'registos', 'sc
       alert('Registo inserido com sucesso!');
     }
   };
+
+
+  /* VALIDATORS */
+  function validate_altaAntesDeHospitalizacao(dataAlta, dataHospitalizacao)
+  {
+    if (!dataAlta || !dataHospitalizacao) {
+      return;
+    }
+    dataAlta = new Date(dataAlta);
+    dataHospitalizacao = new Date(dataHospitalizacao);
+    if (dataHospitalizacao > dataAlta) {
+      $scope.$broadcast('schemaForm.error.dataAlta','altaAnteriorAHospitalizacao', 'Data da Alta não pode ser anterior à Data de Hospitalização');
+      //alert("Erro: A Data da Alta não pode ser anterior à Data de Hospitalização");
+      return false;
+    }
+    return true;
+  }
+
+
+
 
 }]);
