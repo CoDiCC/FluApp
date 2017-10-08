@@ -26,7 +26,7 @@ angular.module('fluApp').factory('formDefinition', function () {
               if (!data) {
                 return true;
               }
-              return !(new Date(data) > new Date());
+              return (new Date(data) <= new Date());
             }
           }
         },
@@ -45,13 +45,13 @@ angular.module('fluApp').factory('formDefinition', function () {
               if (!form.datadeadmissao) {
                 return false;
               }
-              return !(new Date(form.datadeadmissao) > new Date(dataAlta));
+              return (new Date(form.datadeadmissao) <= new Date(dataAlta));
             },
             altaNoFuturo: function(dataAlta) {
               if (!dataAlta) {
                 return true;
               }
-              return !(new Date(dataAlta) > new Date());
+              return (new Date(dataAlta) <= new Date());
             }
           }
         },
@@ -82,7 +82,7 @@ angular.module('fluApp').factory('formDefinition', function () {
                   if (!data) {
                     return true;
                   }
-                  return !(new Date(data) > new Date());
+                  return (new Date(data) <= new Date());
                 }
               }
             },
@@ -129,7 +129,7 @@ angular.module('fluApp').factory('formDefinition', function () {
                       if (!data) {
                         return true;
                       }
-                      return !(new Date(data) > new Date());
+                      return (new Date(data) <= new Date());
                     }
                   }
                 }

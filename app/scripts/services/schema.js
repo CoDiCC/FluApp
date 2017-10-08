@@ -198,14 +198,14 @@ angular.module('fluApp').factory('schema', function () {
       },
       "datadeadmissao": {
         "id": "/properties/datadeadmissao",
-        "title": "Data de Admissão na UCI",
+        "title": "Data de admissão",
         "type": "string",
         "description": "Data de Admissão na UCI",
         "format": "date"
       },
       "dataalta": {
         "id": "/properties/dataalta",
-        "title": "Data da Alta UCI",
+        "title": "Data da alta",
         "description": "Data de Alta na UCI",
         "type": "string",
         "format": "date"
@@ -272,7 +272,7 @@ angular.module('fluApp').factory('schema', function () {
       },
       "datainiciosintomas": {
         "id": "/properties/datainiciosintomas",
-        "title": "Data de Início de Sintomas",
+        "title": "Data de início de sintomas",
         "type": "string",
         "format": "date"
       },
@@ -365,7 +365,7 @@ angular.module('fluApp').factory('schema', function () {
       },
       "doencaneuromuscular": {
         "id": "/properties/doencaneuromuscular",
-        "title": "doencaneuromuscular",
+        "title": "Doença Neuromuscular",
         "type": "boolean"
       },
       "doencaneurocognitiva": {
