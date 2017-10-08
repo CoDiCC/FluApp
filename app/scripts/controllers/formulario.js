@@ -19,7 +19,7 @@ angular.module('fluApp').controller('FormularioCtrl', ['$scope', 'registos', 'sc
     // custom validations
     console.log($scope.model);
 
-    if (form.$invalid) {
+    if (!form.$valid) {
       window.alert('O formulário tem erros. Por favor verifique a informação (assinalada a vermelho).');
     } else {
       var registo = angular.copy($scope.model);

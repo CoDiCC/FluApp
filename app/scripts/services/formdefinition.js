@@ -8,6 +8,15 @@
  * Factory in the fluApp.
  */
 angular.module('fluApp').factory('formDefinition', function () {
+
+  var dataFuturo = function (date) {
+    if (!date) {
+      return true;
+    }
+    return (new Date(date) <= new Date());
+  };
+
+
   return [
     {
       type: "fieldset",
@@ -19,9 +28,16 @@ angular.module('fluApp').factory('formDefinition', function () {
           key: 'datadeadmissao',
           type: 'date',
           validationMessage: {
-            'datadeadmissaoNoFuturo': 'Data de admissão não pode ser no futuro'
+            'datadeadmissaoNoFuturo': 'Data de admissão não pode ser no futuro',
+            'dataAdmissaoAposAlta': 'Data de admissão não pode ser posterior à data de alta'
           },
           $validators: {
+            dataAdmissaoAposAlta: function(dataAdmissao, oldValue, form) {
+              if (!dataAdmissao || !form.dataalta) {
+                return true;
+              }
+              return (new Date(dataAdmissao) <= new Date(form.dataalta));
+            },
             datadeadmissaoNoFuturo: function(data) {
               if (!data) {
                 return true;
@@ -38,25 +54,26 @@ angular.module('fluApp').factory('formDefinition', function () {
             'altaNoFuturo': 'Data de alta não pode ser numa data futura'
           },
           $validators: {
+            altaNoFuturo: dataFuturo,
             altaAntesDeHospitalizacao: function(dataAlta, oldValue, form) {
-              if (!dataAlta) {
+              if (!dataAlta || !form.datadeadmissao) {
                 return true;
-              }
-              if (!form.datadeadmissao) {
-                return false;
               }
               return (new Date(form.datadeadmissao) <= new Date(dataAlta));
-            },
-            altaNoFuturo: function(dataAlta) {
-              if (!dataAlta) {
-                return true;
-              }
-              return (new Date(dataAlta) <= new Date());
             }
           }
         },
         { key: 'sexo' },
-        { key: 'datanascimento', type: 'date'},
+        {
+          key: 'datanascimento',
+          type: 'date',
+          validationMessage: {
+            'nascimentoNoFuturo': 'Data de nascimento não pode ser numa data futura'
+          },
+          $validators: {
+            nascimentoNoFuturo: dataFuturo
+          }
+        },
         {
           key: 'obito',
           type: "radiobuttons",
@@ -78,12 +95,7 @@ angular.module('fluApp').factory('formDefinition', function () {
                 'dataobitoNoFuturo': 'Data do Óbito não pode ser no futuro'
               },
               $validators: {
-                dataobitoNoFuturo: function(data) {
-                  if (!data) {
-                    return true;
-                  }
-                  return (new Date(data) <= new Date());
-                }
+                dataobitoNoFuturo: dataFuturo
               }
             },
             { key: 'causademorte' }
@@ -122,15 +134,10 @@ angular.module('fluApp').factory('formDefinition', function () {
                   key: 'datainiciosintomas',
                   type: "date",
                   validationMessage: {
-                    'inicioSintomasNoFuturo': 'Início de sintomas não pode ser no futuro'
+                    inicioSintomasNoFuturo: 'Início de sintomas não pode ser no futuro'
                   },
                   $validators: {
-                    inicioSintomasNoFuturo: function(data) {
-                      if (!data) {
-                        return true;
-                      }
-                      return (new Date(data) <= new Date());
-                    }
+                    inicioSintomasNoFuturo: dataFuturo
                   }
                 }
               ]
@@ -150,7 +157,17 @@ angular.module('fluApp').factory('formDefinition', function () {
                 { value: "UNK", name: "Desconhecido" }
               ]
             },
-            { key: 'datavacinacao', type: "date", condition: 'model.vacinado === "Y"'}
+            {
+              key: 'datavacinacao',
+              type: "date",
+              condition: 'model.vacinado === "Y"',
+              validationMessage: {
+                vacNoFuturo: 'Início de sintomas não pode ser no futuro'
+              },
+              $validators: {
+                vacNoFuturo: dataFuturo
+              }
+            }
           ]
         },
         {
