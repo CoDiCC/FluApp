@@ -49,13 +49,20 @@ angular.module('fluApp').factory('registos', ['schema', function (schema) {
       data[index] = checkInterface(record);
     },
     add: function (registo) {
-      data.push(checkInterface(registo));
+
     },
     remove: function (index) {
       data.splice(index, 1);
     },
     getAll: function () {
       return data;
+    },
+    setAll: function (regs) {
+      data = [];
+      for (var i = 0; i < regs.length; ++i) {
+        console.log(regs[i]);
+        data.push(checkInterface(regs[i]));
+      }
     },
     reset: function () {
       data = [];

@@ -7,11 +7,15 @@
  * # RegistosCtrl
  * Controller of the fluApp
  */
-angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', function ($scope, registos) {
-
+angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uibModal', 'CsvParser', function ($scope, registos, $uibModal, CsvParser) {
   $scope.headers = registos.getHeaders(true);
   $scope.props = registos.getProps();
   $scope.registos = registos.getAll();
+
+  $scope.options = {
+    filename: 'registos',
+    fieldSeparator: ';'
+  };
 
   $scope.getArray = function () {
     return JSON.parse(angular.toJson(registos.getAll()));
@@ -43,4 +47,28 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', funct
     }
     $scope.registos = registos.getAll();
   };
+
+  $scope.fileLoadModalOpen = function () {
+    var modalInstance = $uibModal.open({
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'views/uploadfilemodal.html',
+      controller: 'OpenFileModalInstanceCtrl'
+    });
+
+    modalInstance.result.then(
+      function (file) {
+        var data = CsvParser.parse(file);
+        registos.setAll(data);
+        $scope.registos = registos.getAll();
+        console.log(registos.getAll());
+      },
+      function () {
+
+      }
+    );
+  };
+
+
+
 }]);

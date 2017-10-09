@@ -6,26 +6,35 @@
     <!-- Default panel contents -->
     <div class="panel-heading panel-button-top">
       <div class="btn btn-default"
+
            ng-csv="getArray"
            data-csv-header="getProps()"
            data-csv-column-order="getProps()"
            data-quote-strings="true"
-           data-filename="registo.csv"
+           data-filename="{{options.filename}}.csv"
+           data-field-separator="{{ options.fieldSeparator }}"
+
            data-tooltip-placement="bottom"
            uib-tooltip="Guardar como CSV">
         <i class="fa fa-lg fa-floppy-o" aria-hidden="true"></i>
       </div>
       <div class="btn btn-default"
-           ng-click="reset()"
+           ng-click="fileLoadModalOpen()"
            data-tooltip-placement="bottom"
-           uib-tooltip="Apagar todos os registos">
-        <i class="fa fa-lg fa-eraser" aria-hidden="true"></i>
+           uib-tooltip="Carregar ficheiro">
+        <i class="fa fa-lg fa-folder-open-o" aria-hidden="true"></i>
       </div>
       <div class="btn btn-default"
            ng-click="deleteRecord()"
            data-tooltip-placement="bottom"
            uib-tooltip="Apagar registo seleccionado">
         <i class="fa fa-lg fa-minus-square" aria-hidden="true"></i>
+      </div>
+      <div class="btn btn-default"
+           ng-click="reset()"
+           data-tooltip-placement="bottom"
+           uib-tooltip="Apagar todos os registos">
+        <i class="fa fa-lg fa-eraser" aria-hidden="true"></i>
       </div>
     </div>
     <div class="panel-table-wrapper">
@@ -50,3 +59,4 @@
     </div>
   </div>
 </section>
+
