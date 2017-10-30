@@ -487,7 +487,6 @@ angular.module('fluApp').factory('schema', function () {
         "title": "Observações",
         "type": "string"
       }
-
     }
   };
 });
