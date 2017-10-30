@@ -61,14 +61,10 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uib
         var data = CsvParser.parse(file);
         registos.setAll(data);
         $scope.registos = registos.getAll();
-        console.log(registos.getAll());
       },
       function () {
 
       }
     );
   };
-
-
-
 }]);

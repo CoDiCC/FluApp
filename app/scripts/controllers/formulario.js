@@ -17,7 +17,6 @@ angular.module('fluApp').controller('FormularioCtrl', ['$scope', 'registos', 'sc
     $scope.$broadcast('schemaFormValidate');
 
     // custom validations
-    console.log($scope.model);
 
     if (!form.$valid) {
       window.alert('O formulário tem erros. Por favor verifique a informação (assinalada a vermelho).');

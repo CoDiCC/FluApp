@@ -48,8 +48,8 @@ angular.module('fluApp').factory('registos', ['schema', function (schema) {
     set: function (index, record) {
       data[index] = checkInterface(record);
     },
-    add: function (registo) {
-
+    add: function (record) {
+      data.push(checkInterface(record));
     },
     remove: function (index) {
       data.splice(index, 1);
@@ -60,7 +60,6 @@ angular.module('fluApp').factory('registos', ['schema', function (schema) {
     setAll: function (regs) {
       data = [];
       for (var i = 0; i < regs.length; ++i) {
-        console.log(regs[i]);
         data.push(checkInterface(regs[i]));
       }
     },
