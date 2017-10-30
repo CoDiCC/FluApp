@@ -203,13 +203,6 @@ angular.module('fluApp').factory('schema', function () {
         "description": "Data de Admissão na UCI",
         "format": "date"
       },
-      "dataalta": {
-        "id": "/properties/dataalta",
-        "title": "Data da alta",
-        "description": "Data de Alta na UCI",
-        "type": "string",
-        "format": "date"
-      },
       "sexo": {
         "id": "/properties/sexo",
         "title": "Sexo",
@@ -224,27 +217,12 @@ angular.module('fluApp').factory('schema', function () {
         "type": "string",
         "format": "date"
       },
-      "obito": {
-        "id": "/properties/obito",
-        "title": "Óbito?",
-        "description": "O utente faleceu?",
-        "type": "string",
-        "enum": ["Y", "N", "UNK"]
-      },
-      "dataobito": {
-        "id": "/properties/dataobit",
-        "title": "Data do òbito",
-        "description": "Data do óbito (se aplicável)",
+      "datainiciosintomas": {
+        "id": "/properties/datainiciosintomas",
+        "title": "Data de início de sintomas",
         "type": "string",
         "format": "date"
       },
-      "causademorte": {
-        "id": "/properties/causademorte",
-        "title": "Causa de Morte",
-        "description": "Causa de morte (se aplicável)",
-        "type": "string"
-      },
-
       "tosse": {
         "id": "/properties/tosse",
         "title": "Tosse",
@@ -270,14 +248,6 @@ angular.module('fluApp').factory('schema', function () {
         "title": "Outro sintoma",
         "type": "string"
       },
-      "datainiciosintomas": {
-        "id": "/properties/datainiciosintomas",
-        "title": "Data de início de sintomas",
-        "type": "string",
-        "format": "date"
-      },
-
-
       "vacinado": {
         "id": "/properties/vacinado",
         "title": "Vacinado",
@@ -290,6 +260,13 @@ angular.module('fluApp').factory('schema', function () {
         "title": "Data de Vacinação",
         "type": "string",
         "format": "date"
+      },
+      "doencacronica": {
+        "id": "/properties/doencacronica",
+        "title": "Doença Crónica",
+        "description": "O doente tem alguma doença crónica?",
+        "type": "string",
+        "enum": ["Y", "N", "UNK"]
       },
       "sdra": {
         "id": "/properties/sdra",
@@ -322,7 +299,6 @@ angular.module('fluApp').factory('schema', function () {
         "title": "Sepsis",
         "type": "boolean"
       },
-
       "asma": {
         "id": "/properties/asma",
         "title": "Asma",
@@ -376,7 +352,7 @@ angular.module('fluApp').factory('schema', function () {
       "obesidade": {
         "id": "/properties/obesidade",
         "title": "Obesidade",
-        "description": "IMC entre 30kg/m2 e 40kg/m2",
+        "description": "IMC > 29,9kg/m2",
         "type": "boolean"
       },
       "obesidademorbida": {
@@ -398,8 +374,14 @@ angular.module('fluApp').factory('schema', function () {
       },
       "zanamivir": {
         "id": "/properties/zanamivir",
-        "title": "Aanamivir",
+        "title": "Zanamivir",
         "type": "boolean"
+      },
+      "datatratamento": {
+        "id": "/properties/datatratamento",
+        "title": "Data do tratamento",
+        "type": "string",
+        "format": "date"
       },
 
       "vni": {
@@ -423,6 +405,8 @@ angular.module('fluApp').factory('schema', function () {
         "title": "Técnica de substituição renal",
         "type": "boolean"
       },
+
+
       "zaragatoa": {
         "id": "/properties/zaragatoa",
         "title": "Zaragatoa naso ou orofaríngea",
@@ -459,6 +443,43 @@ angular.module('fluApp').factory('schema', function () {
           "UNK",      // Unknown
           "O"         // Outro
         ]
+      },
+
+      "datalaboratorio": {
+        "id": "/properties/datalaboratorio",
+        "title": "Data da confirmação laboratorial",
+        "type": "string",
+        "format": "date"
+      },
+
+      "dataalta": {
+        "id": "/properties/dataalta",
+        "title": "Data da alta",
+        "description": "Data de Alta na UCI",
+        "type": "string",
+        "format": "date"
+      },
+
+
+      "obito": {
+        "id": "/properties/obito",
+        "title": "Óbito?",
+        "description": "O utente faleceu?",
+        "type": "string",
+        "enum": ["Y", "N", "UNK"]
+      },
+      "dataobito": {
+        "id": "/properties/dataobit",
+        "title": "Data do òbito",
+        "description": "Data do óbito (se aplicável)",
+        "type": "string",
+        "format": "date"
+      },
+      "causademorte": {
+        "id": "/properties/causademorte",
+        "title": "Causa de Morte",
+        "description": "Causa de morte (se aplicável)",
+        "type": "string"
       },
 
       "observacoes": {
