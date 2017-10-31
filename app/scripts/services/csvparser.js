@@ -14,7 +14,7 @@ angular.module('fluApp').service('CsvParser', function () {
   return {
 
     setDelimiter: function (delim) {
-      delimiter = delim
+      delimiter = delim;
     },
 
     parse: function (csv) {

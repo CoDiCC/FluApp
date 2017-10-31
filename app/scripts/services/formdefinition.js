@@ -271,7 +271,7 @@ angular.module('fluApp').factory('formDefinition', function () {
       htmlClass: 'stretch-all',
       items: [
         { type: 'submit', title: 'Carregar' },
-        { type: 'button', title: 'Reset', fieldHtmlClass: 'btn-danger'}
+        { type: 'button', title: 'Reset', onClick: 'onReset(registoForm)' }
       ]
     }
   ];

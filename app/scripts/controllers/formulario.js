@@ -9,8 +9,20 @@
  */
 angular.module('fluApp').controller('FormularioCtrl', ['$scope', 'registos', 'schema', 'formDefinition', function ($scope, registos, schema, formDefinition) {
   $scope.model = {};
+  $scope.initialModel = {};
   $scope.schema = schema;
   $scope.form = formDefinition;
+  $scope.registoForm = null;
+
+  $scope.onReset = function (form) {
+
+    if (form) {
+      form.$setPristine();
+      form.$setUntouched();
+    }
+    $scope.model = {};
+    $scope.$broadcast('schemaFormRedraw');
+  };
 
   $scope.onSubmit = function (form) {
     // First we broadcast an event so all fields validate themselves
@@ -23,9 +35,8 @@ angular.module('fluApp').controller('FormularioCtrl', ['$scope', 'registos', 'sc
     } else {
       var registo = angular.copy($scope.model);
       registos.add(registo);
-      $scope.model = {};
-      form.$setPristine();
-      form.$setUntouched();
+      // reset form
+      $scope.onReset(form);
       window.alert('Registo inserido com sucesso!');
     }
   };
