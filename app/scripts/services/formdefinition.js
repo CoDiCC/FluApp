@@ -194,7 +194,16 @@ angular.module('fluApp').factory('formDefinition', function () {
             { value: "O", name: "Outro"}
           ]
         },
-        {key: 'datalaboratorio'}
+        {
+          key: 'datalaboratorio',
+          type: "date",
+          validationMessage: {
+            'laboratorioNoFuturo': 'Data de alta não pode ser numa data futura'
+          },
+          $validators: {
+            laboratorioNoFuturo: dataFuturo
+          }
+        }
       ]
     },
 
