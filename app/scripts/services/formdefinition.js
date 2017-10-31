@@ -124,23 +124,23 @@ angular.module('fluApp').factory('formDefinition', function () {
             { key: 'doencahepaticacronica'},
             { key: 'doencaneuromuscular'},
             { key: 'doencaneurocognitiva'},
-            { key: 'obesidade'},
-            {
-              key: 'gravidez',
-              description: 'Está grávida?',
-              validationMessage: {
-                'gravidezNoHomem': 'Não pode seleccionar sexo masculino e gravidez'
-              },
-              $validators: {
-                gravidezNoHomem: function(gravidez, oldValue, form) {
-                  if (!gravidez || !form.sexo) {
-                    return true;
-                  }
-                  return !(gravidez && form.sexo === 'M');
-                }
-              }
-            }
+            { key: 'obesidade'}
           ]
+        },
+        {
+          key: 'gravidez',
+          description: 'Está grávida?',
+          validationMessage: {
+            'gravidezNoHomem': 'Não pode seleccionar sexo masculino e gravidez'
+          },
+          $validators: {
+            gravidezNoHomem: function(gravidez, oldValue, form) {
+              if (!gravidez || !form.sexo) {
+                return true;
+              }
+              return !(gravidez && form.sexo === 'M');
+            }
+          }
         }
       ]
     },
