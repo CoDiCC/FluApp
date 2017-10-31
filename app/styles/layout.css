@@ -109,7 +109,8 @@ html, body {
 }
 
 #registos>.panel>.panel-table-wrapper {
-  overflow-x: auto;
+  overflow: auto;
+  height: calc(100vh - 400px);
 }
 
 
