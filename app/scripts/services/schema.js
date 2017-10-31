@@ -326,7 +326,7 @@ angular.module('fluApp').factory('schema', function () {
       },
       "hiv": {
         "id": "/properties/hiv",
-        "title": "HIV",
+        "title": "VIH (ou outras imunodeficiências)",
         "type": "boolean"
       },
       "doencarenalcronica": {

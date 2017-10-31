@@ -74,15 +74,18 @@ html, body {
  **/
 
 @media screen and (min-width: 992px) {
+
   #registoForm {
+    margin-right: 10px;
+    /*
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: space-between;
+    */
   }
-
   #registoForm>fieldset {
-    flex: 0 1 30%;
+    margin-top: 20px;
   }
 
 }
