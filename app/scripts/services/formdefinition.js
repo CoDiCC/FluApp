@@ -147,18 +147,48 @@ angular.module('fluApp').factory('formDefinition', function () {
       type: "fieldset",
       title: "Tratamento",
       items: [
-        { key: 'oseltamivir'},
-        { key: 'zanamivir'}
+        {
+          key: "feztratamento",
+          type: "radiobuttons",
+          titleMap: [
+            { value: "Y", name: "Sim" },
+            { value: "N", name: "Não" },
+            { value: "UNK", name: "Desconhecido" }
+          ]
+        },
+        {
+          type: "fieldset",
+          condition: 'model.feztratamento === "Y"',
+          items: [
+            { key: 'oseltamivir'},
+            { key: 'zanamivir'}
+          ]
+        }
       ]
     },
     {
       type: "fieldset",
       title: "Procedimentos",
       items: [
-        { key: 'vni'},
-        { key: 'intubacao'},
-        { key: 'ecmo'},
-        { key: 'dialise'}
+        {
+          key: "fezprocedimento",
+          type: "radiobuttons",
+          titleMap: [
+            { value: "Y", name: "Sim" },
+            { value: "N", name: "Não" },
+            { value: "UNK", name: "Desconhecido" }
+          ]
+        },
+        {
+          type: "fieldset",
+          condition: 'model.fezprocedimento === "Y"',
+          items: [
+            { key: 'vni'},
+            { key: 'intubacao'},
+            { key: 'ecmo'},
+            { key: 'dialise'}
+          ]
+        }
       ]
     },
     {

@@ -25,7 +25,8 @@ angular.module('fluApp').factory('schema', function () {
       "datanascimento",
       "obito",
       "vacinado",
-      "serotipagem"
+      "serotipagem",
+      "feztratamento"
     ],
     */
     "properties": {
@@ -228,6 +229,7 @@ angular.module('fluApp').factory('schema', function () {
         "type": "string",
         "format": "date"
       },
+      /*
       "tosse": {
         "id": "/properties/tosse",
         "title": "Tosse",
@@ -253,6 +255,7 @@ angular.module('fluApp').factory('schema', function () {
         "title": "Outro sintoma",
         "type": ["string", "null"]
       },
+      */
       "vacinado": {
         "id": "/properties/vacinado",
         "title": "Vacinado",
@@ -260,18 +263,12 @@ angular.module('fluApp').factory('schema', function () {
         "type": "string",
         "enum": ["Y", "N", "UNK"]
       },
+      /*
       "datavacinacao": {
         "id": "/properties/datavacinacao",
         "title": "Data de Vacinação",
         "type": ["string", "null"],
         "format": "date"
-      },
-      "doencacronica": {
-        "id": "/properties/doencacronica",
-        "title": "Doença Crónica",
-        "description": "O doente tem alguma doença crónica?",
-        "type": "string",
-        "enum": ["Y", "N", "UNK"]
       },
       "sdra": {
         "id": "/properties/sdra",
@@ -303,6 +300,14 @@ angular.module('fluApp').factory('schema', function () {
         "id": "/properties/sepsis",
         "title": "Sepsis",
         "type": ["boolean", "null"]
+      },
+      */
+      "doencacronica": {
+        "id": "/properties/doencacronica",
+        "title": "Doença Crónica",
+        "description": "O doente tem alguma doença crónica?",
+        "type": "string",
+        "enum": ["Y", "N", "UNK"]
       },
       "asma": {
         "id": "/properties/asma",
@@ -349,27 +354,38 @@ angular.module('fluApp').factory('schema', function () {
         "title": "Doença Neuromuscular",
         "type": ["boolean", "null"]
       },
+      /*
       "doencaneurocognitiva": {
         "id": "/properties/doencaneurocognitiva",
         "title": "Doença Neurocognitiva",
         "type": ["boolean", "null"]
       },
+      */
       "obesidade": {
         "id": "/properties/obesidade",
         "title": "Obesidade",
         "description": "IMC > 29,9kg/m2",
         "type": ["boolean", "null"]
       },
+      /*
       "obesidademorbida": {
         "id": "/properties/obesidademorbida",
         "title": "Obesidade Mórbida",
         "description": "IMC > 40kg/m2",
         "type": ["boolean", "null"]
       },
+      */
       "gravidez": {
         "id": "/properties/gravidez",
         "title": "Gravidez",
-        "type": ["boolean", "null"]
+        "type": "string",
+        "enum": ["Y", "N", "UNK"]
+      },
+      "feztratamento": {
+        "id": "/properties/feztratamento",
+        "title": "Fez tratamento",
+        "type": "string",
+        "enum": ["Y", "N", "UNK"]
       },
       "oseltamivir": {
         "id": "/properties/oseltamivir",
@@ -386,6 +402,13 @@ angular.module('fluApp').factory('schema', function () {
         "title": "Data do tratamento",
         "type": ["string", "null"],
         "format": "date"
+      },
+      "fezprocedimento": {
+        "id": "/properties/fezprocedimento",
+        "title": "Realizou procedimento",
+        "description": "Realizou algum dos seguintes procedimentos durante internamento?",
+        "type": "string",
+        "enum": ["Y", "N", "UNK"]
       },
       "vni": {
         "id": "/properties/vni",
@@ -466,17 +489,19 @@ angular.module('fluApp').factory('schema', function () {
       },
       "dataobito": {
         "id": "/properties/dataobit",
-        "title": "Data do òbito",
+        "title": "Data do óbito",
         "description": "Data do óbito (se aplicável)",
         "type": ["string", "null"],
         "format": "date"
       },
+      /*
       "causademorte": {
         "id": "/properties/causademorte",
         "title": "Causa de Morte",
         "description": "Causa de morte (se aplicável)",
         "type": ["string", "null"]
       },
+      */
       "observacoes": {
         "id": "/properties/observacoes",
         "title": "Observações",
