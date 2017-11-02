@@ -18,8 +18,6 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uib
     fieldSeparator: ';'
   };
 
-  $scope.$watch($scope.registos, function () {}, true);
-
   $scope.getArray = function () {
     return JSON.parse(angular.toJson(registos.getAll()));
   };
@@ -48,11 +46,6 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uib
       }
     }
     return counter;
-  };
-
-  $scope.editRecord = function () {
-
-
   };
 
   $scope.deleteRecord = function () {
@@ -93,11 +86,13 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uib
     }
     var count = $scope.registos.length - 1;
     var record = {};
+    var index = null;
 
     for (var i = count; i >= 0 ; --i) {
       if ($scope.registos[i].$$selected === true) {
         //create copy of record
         record = angular.copy($scope.registos[i]);
+        index = i;
 
         // transform all date items in record in a date object
         // because angular input date only accepts datetime objects
@@ -117,6 +112,10 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uib
       }
     }
 
+    if (index === null) {
+      return;
+    }
+
     var modalInstance = $uibModal.open({
       ariaLabelledBy: 'modal-title',
       ariaDescribedBy: 'modal-body',
@@ -130,10 +129,10 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uib
     });
 
     modalInstance.result.then(
-      //ok
-      function (record) {
-        console.log(record);
-
+      function (registo) {
+        // ok
+        registos.set(index, registo);
+        $scope.registos = registos.getAll();
       },
       function () {
         //cancel

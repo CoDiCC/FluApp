@@ -15,9 +15,6 @@ angular.module('fluApp').controller('EditrecordmodalCtrl', [
   'formDefinition',
   'record',
   function ($uibModalInstance, $scope, registos, schema, formDefinition, record) {
-
-    console.log(record);
-
     $scope.model = record;
     $scope.schema = schema;
     $scope.form = formDefinition.editForm();
