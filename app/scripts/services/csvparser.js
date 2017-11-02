@@ -34,7 +34,29 @@ angular.module('fluApp').service('CsvParser', function () {
 
         for (var c = 0; c < headers.length; ++c) {
           if (!angular.isUndefined(line[c])) {
-            lineObj[headers[c]] = line[c];
+            var value = line[c];
+
+            // remove "
+            value = value.replace(/^"*/, '').replace(/"*$/, '');
+
+            // trim spaces
+            value = value.trim();
+
+            // force typecast to null
+            if (value === '') {
+              value = null;
+            // force typecast to boolean
+            } else if (value === 'TRUE' || value === 'true') {
+              value = true;
+            } else if (value === 'FALSE' || value === 'false') {
+              value = false;
+
+            // force typecast to Integer
+            } else if (/^\d+$/.test(value)) {
+              value = parseInt(value);
+            }
+
+            lineObj[headers[c]] = value;
           }
         }
         data[i] = lineObj;

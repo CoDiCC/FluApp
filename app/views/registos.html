@@ -5,36 +5,51 @@
   <div class="panel panel-default">
     <!-- Default panel contents -->
     <div class="panel-heading panel-button-top">
-      <div class="btn btn-default"
 
-           ng-csv="getArray"
-           data-csv-header="getProps()"
-           data-csv-column-order="getProps()"
-           data-filename="{{options.filename}}.csv"
-           data-field-separator="{{ options.fieldSeparator }}"
+      <!-- guardar como CSV -->
+      <span class="fa-btn"
+            ng-csv="getArray"
+            data-csv-header="getProps()"
+            data-csv-column-order="getProps()"
+            data-filename="{{options.filename}}.csv"
+            data-field-separator="{{ options.fieldSeparator }}"
+            data-tooltip-placement="bottom"
+            uib-tooltip="Guardar como CSV">
+        <i class="fa fa-lg fa-fw fa-floppy-o"></i>
+      </span>
 
-           data-tooltip-placement="bottom"
-           uib-tooltip="Guardar como CSV">
-        <i class="fa fa-lg fa-floppy-o" aria-hidden="true"></i>
-      </div>
-      <div class="btn btn-default"
-           ng-click="fileLoadModalOpen()"
-           data-tooltip-placement="bottom"
-           uib-tooltip="Abrir ficheiro CSV">
-        <i class="fa fa-lg fa-folder-open-o" aria-hidden="true"></i>
-      </div>
-      <div class="btn btn-default"
+      <!-- Abrir ficheiro CSV -->
+      <span class="fa-btn"
+            ng-click="fileLoadModalOpen()"
+            data-tooltip-placement="bottom"
+            uib-tooltip="Abrir ficheiro CSV">
+        <i class="fa fa-lg fa-fw fa-folder-open-o"></i>
+      </span>
+
+      <!-- Editar registo -->
+      <span class="fa-btn"
+            ng-show="countSelected() === 1"
+            ng-click="editRecordModalOpen()"
+            data-tooltip-placement="bottom"
+            uib-tooltip="Editar registo seleccionado">
+        <i class="fa fa-lg fa-fw fa-pencil"></i>
+      </span>
+
+      <!-- Apagar registo seleccionado -->
+      <span class="fa-btn"
            ng-click="deleteRecord()"
            data-tooltip-placement="bottom"
            uib-tooltip="Apagar registo seleccionado">
-        <i class="fa fa-lg fa-minus-square" aria-hidden="true"></i>
-      </div>
-      <div class="btn btn-default"
+        <i class="fa fa-lg fa-fw fa-eraser" aria-hidden="true"></i>
+      </span>
+
+      <!-- Apagar todos os registos -->
+      <span class="fa-btn"
            ng-click="reset()"
            data-tooltip-placement="bottom"
            uib-tooltip="Apagar todos os registos">
-        <i class="fa fa-lg fa-eraser" aria-hidden="true"></i>
-      </div>
+        <i class="fa fa-lg fa-fw fa-trash-o" aria-hidden="true"></i>
+      </span>
     </div>
     <div class="panel-table-wrapper">
       <table class="table table-condensed table-hover table-overflow-x">
@@ -46,9 +61,9 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="item in registos track by $index" ng-class="{'info': r.$$selected}" ng-click="r.$$selected = !r.$$selected">
+        <tr ng-repeat="item in registos" ng-class="{'info': item.$$selected}" ng-click="item.$$selected = !item.$$selected">
           <th class="table-select-row">
-            <i class="fa" ng-class="{'fa-square-o': !r.$$selected, 'fa-check-square-o': r.$$selected}" aria-hidden="true"></i>
+            <i class="fa" ng-class="{'fa-square-o': !item.$$selected, 'fa-check-square-o': item.$$selected}" aria-hidden="true"></i>
           </th>
           <th>{{ $index }}</th>
           <td ng-repeat="prop in props">{{::item[prop]}}</td>

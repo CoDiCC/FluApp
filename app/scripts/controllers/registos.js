@@ -8,6 +8,7 @@
  * Controller of the fluApp
  */
 angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uibModal', 'CsvParser', function ($scope, registos, $uibModal, CsvParser) {
+
   $scope.headers = registos.getHeaders(true);
   $scope.props = registos.getProps();
   $scope.registos = registos.getAll();
@@ -16,6 +17,8 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uib
     filename: 'registos',
     fieldSeparator: ';'
   };
+
+  $scope.$watch($scope.registos, function () {}, true);
 
   $scope.getArray = function () {
     return JSON.parse(angular.toJson(registos.getAll()));
@@ -34,6 +37,22 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uib
       registos.reset();
       $scope.registos = registos.getAll();
     }
+  };
+
+  $scope.countSelected = function () {
+    var count = $scope.registos.length - 1;
+    var counter = 0;
+    for (var i = count; i >= 0 ; --i) {
+      if ($scope.registos[i].$$selected === true) {
+        counter++;
+      }
+    }
+    return counter;
+  };
+
+  $scope.editRecord = function () {
+
+
   };
 
   $scope.deleteRecord = function () {
@@ -59,12 +78,69 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uib
     modalInstance.result.then(
       function (file) {
         var data = CsvParser.parse(file);
+        $scope.registos = [];
         registos.setAll(data);
         $scope.registos = registos.getAll();
       },
-      function () {
-
-      }
+      function () {}
     );
   };
+
+  $scope.editRecordModalOpen = function () {
+
+    if ($scope.countSelected() !== 1) {
+      return;
+    }
+    var count = $scope.registos.length - 1;
+    var record = {};
+
+    for (var i = count; i >= 0 ; --i) {
+      if ($scope.registos[i].$$selected === true) {
+        //create copy of record
+        record = angular.copy($scope.registos[i]);
+
+        // transform all date items in record in a date object
+        // because angular input date only accepts datetime objects
+        for (var item in record) {
+          if (record.hasOwnProperty(item)) {
+            // we assume that all properties whose name start by data are... well... dates
+            if (/^data/.test(item) && record[item] !== null && record[item] !== '') {
+              try {
+                record[item] = new Date(record[item]);
+              } catch (e) {
+                record[item] = null;
+              }
+            }
+          }
+        }
+        break; // stop loop on first record selected
+      }
+    }
+
+    var modalInstance = $uibModal.open({
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      templateUrl: 'views/editrecordmodal.html',
+      controller: 'EditrecordmodalCtrl',
+      resolve: {
+        record: function () {
+          return record;
+        }
+      }
+    });
+
+    modalInstance.result.then(
+      //ok
+      function (record) {
+        console.log(record);
+
+      },
+      function () {
+        //cancel
+        console.log('cancel');
+      }
+    );
+
+  };
+
 }]);

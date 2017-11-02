@@ -16,8 +16,7 @@ angular.module('fluApp').factory('formDefinition', function () {
     return (new Date(date) <= new Date());
   };
 
-
-  return [
+  var form = [
     {
       type: "fieldset",
       title: "Informações administrativas",
@@ -198,10 +197,17 @@ angular.module('fluApp').factory('formDefinition', function () {
           key: 'datalaboratorio',
           type: "date",
           validationMessage: {
-            'laboratorioNoFuturo': 'Data de alta não pode ser numa data futura'
-          },
+            'altaAntesDeHospitalizacao': 'Data da Alta não pode ser anterior à Data de Admissão na UCI',
+          'altaNoFuturo': 'Data de alta não pode ser numa data futura'
+        },
           $validators: {
-            laboratorioNoFuturo: dataFuturo
+            altaNoFuturo: dataFuturo,
+            altaAntesDeHospitalizacao: function(dataAlta, oldValue, form) {
+              if (!dataAlta || !form.datadeadmissao) {
+                return true;
+              }
+              return (new Date(form.datadeadmissao) <= new Date(dataAlta));
+            }
           }
         }
       ]
@@ -264,15 +270,25 @@ angular.module('fluApp').factory('formDefinition', function () {
       items: [
         { key: 'observacoes', type: "textarea"}
       ]
-    },
-    {
-      type: "fieldset",
-      title: "Acções",
-      htmlClass: 'stretch-all',
-      items: [
-        { type: 'submit', title: 'Carregar' },
-        { type: 'button', title: 'Reset', onClick: 'onReset(registoForm)' }
-      ]
     }
   ];
+
+  return {
+    newForm: function () {
+      var nForm = angular.copy(form);
+      nForm.push({
+        type: "fieldset",
+        title: "Acções",
+        htmlClass: 'stretch-all',
+        items: [
+          { type: 'submit', title: 'Carregar' },
+          { type: 'button', title: 'Reset', fieldHtmlClass: 'btn-danger'}
+        ]
+      });
+      return nForm;
+    },
+    editForm: function () {
+      return angular.copy(form);
+    }
+  };
 });

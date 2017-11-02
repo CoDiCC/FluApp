@@ -1,23 +1,23 @@
 'use strict';
 
-describe('Controller: RegistosCtrl', function () {
+describe('Controller: EditrecordmodalCtrl', function () {
 
   // load the controller's module
   beforeEach(module('fluApp'));
 
-  var RegistoscontrollerCtrl,
+  var EditrecordmodalCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    RegistoscontrollerCtrl = $controller('RegistosCtrl', {
+    EditrecordmodalCtrl = $controller('EditrecordmodalCtrl', {
       $scope: scope
       // place here mocked dependencies
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    //expect(RegistoscontrollerCtrl.awesomeThings.length).toBe(3);
+    expect(EditrecordmodalCtrl.awesomeThings.length).toBe(3);
   });
 });

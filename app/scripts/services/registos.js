@@ -1,16 +1,18 @@
+/* global tv4 */
 'use strict';
 
 /**
  * @ngdoc service
- * @name fluApp.registos
+ * @name fluApp.records
  * @description
- * # registos
+ * # records
  * Factory in the fluApp.
  */
 angular.module('fluApp').factory('registos', ['schema', function (schema) {
 
   var headers = [];
   var props = [];
+  var nSchema = angular.copy(schema);
 
   for (var prop in schema.properties) {
     if (schema.properties.hasOwnProperty(prop)) {
@@ -22,16 +24,35 @@ angular.module('fluApp').factory('registos', ['schema', function (schema) {
         header = prop;
       }
       headers.push(header);
+
+      if (!angular.isUndefined(schema.properties[prop].format) && schema.properties[prop].format === 'date') {
+        if (angular.isArray(schema.properties[prop].type)) {
+          nSchema.properties[prop].type.push('object');
+        } else {
+          nSchema.properties[prop].type = [nSchema.properties[prop].type, 'object'];
+        }
+      }
+
     }
   }
 
   var data = [];
 
-  var checkInterface = function (registo) {
-    if (!registo.hasOwnProperty('$$selected')) {
-      registo.$$selected = false;
+  var checkInterface = function (record) {
+    if (!record.hasOwnProperty('$$selected')) {
+      record.$$selected = false;
     }
-    return registo;
+    return record;
+  };
+
+  var validateAgainstSchema = function (record) {
+
+    if (!tv4.validate(record, nSchema)) {
+      var error = tv4.error;
+      console.log(error);
+      throw new Error('in record --> ' + error.dataPath  + ' because ' + error.message);
+    }
+    return true;
   };
 
 
@@ -45,14 +66,30 @@ angular.module('fluApp').factory('registos', ['schema', function (schema) {
     get: function (index) {
       return data[index];
     },
+    insertAt: function (index, record) {
+      return data.splice(index, 0, record);
+    },
     set: function (index, record) {
-      data[index] = checkInterface(record);
+      if (!angular.isNumber(index)) {
+        throw new Error('index parameter should be an integer');
+      }
+      if (validateAgainstSchema(record)) {
+        data[index] = checkInterface(record);
+        return index;
+      }
+      return null;
     },
     add: function (record) {
-      data.push(checkInterface(record));
+      if (!angular.isObject(record) && !angular.isArray(record)) {
+        throw new Error('record parameter should be an object or an array');
+      }
+      if (validateAgainstSchema(record)) {
+        return data.push(checkInterface(record)) - 1;
+      }
+      return null;
     },
     remove: function (index) {
-      data.splice(index, 1);
+      return data.splice(index, 1)[0];
     },
     getAll: function () {
       return data;
@@ -60,11 +97,15 @@ angular.module('fluApp').factory('registos', ['schema', function (schema) {
     setAll: function (regs) {
       data = [];
       for (var i = 0; i < regs.length; ++i) {
-        data.push(checkInterface(regs[i]));
+        if (validateAgainstSchema(regs[i])) {
+          data.push(checkInterface(regs[i]));
+        }
       }
+      return data;
     },
     reset: function () {
       data = [];
+      return data;
     }
   };
 

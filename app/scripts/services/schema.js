@@ -12,6 +12,7 @@ angular.module('fluApp').factory('schema', function () {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "http://example.com/example.json",
     "type": "object",
+    /*
     "required": [
       "hospital",
       "numprocessoclinico",
@@ -26,6 +27,7 @@ angular.module('fluApp').factory('schema', function () {
       "vacinado",
       "serotipagem"
     ],
+    */
     "properties": {
       "hospital": {
         "id": "/properties/hospital",
@@ -229,27 +231,27 @@ angular.module('fluApp').factory('schema', function () {
       "tosse": {
         "id": "/properties/tosse",
         "title": "Tosse",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "febre": {
         "id": "/properties/vebre",
         "title": "Febre",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "dispneia": {
         "id": "/properties/dispneia",
         "title": "Dispneia",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "odinofagia": {
         "id": "/properties/odinofagia",
         "title": "Odinofagia",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "outrosintoma": {
         "id": "/properties/outrosintoma",
         "title": "Outro sintoma",
-        "type": "string"
+        "type": ["string", "null"]
       },
       "vacinado": {
         "id": "/properties/vacinado",
@@ -261,7 +263,7 @@ angular.module('fluApp').factory('schema', function () {
       "datavacinacao": {
         "id": "/properties/datavacinacao",
         "title": "Data de Vacinação",
-        "type": "string",
+        "type": ["string", "null"],
         "format": "date"
       },
       "doencacronica": {
@@ -275,157 +277,152 @@ angular.module('fluApp').factory('schema', function () {
         "id": "/properties/sdra",
         "title": "SDRA",
         "description": "Síndrome de Desconforto Respiratório no Adulto",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "bronquiolite": {
         "id": "/properties/bronquiolite",
         "title": "Bronquiolite",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "encefalite": {
         "id": "/properties/encefalite",
         "title": "Encefalite",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "miocardite": {
         "id": "/properties/miocardite",
         "title": "Miocardite",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "pneumonia": {
         "id": "/properties/pneumonia",
         "title": "Pneumonia",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "sepsis": {
         "id": "/properties/sepsis",
         "title": "Sepsis",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "asma": {
         "id": "/properties/asma",
         "title": "Asma",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "dpoc": {
         "id": "/properties/dpoc",
         "title": "DPOC",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "diabetes": {
         "id": "/properties/diabetes",
         "title": "Diabetes",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "doencaoncologica": {
         "id": "/properties/doencaoncologica",
         "title": "Doença Oncológica",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "doencacardiacacronica": {
         "id": "/properties/doencacardiacacronica",
         "title": "Doença Cardíaca Crónica",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "hiv": {
         "id": "/properties/hiv",
         "title": "VIH (ou outras imunodeficiências)",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "doencarenalcronica": {
         "id": "/properties/doencarenalcronica",
         "title": "Doença Renal Crónica",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "doencahepaticacronica": {
         "id": "/properties/doencahepaticacronica",
         "title": "Doença Hepática Crónica",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "doencaneuromuscular": {
         "id": "/properties/doencaneuromuscular",
         "title": "Doença Neuromuscular",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "doencaneurocognitiva": {
         "id": "/properties/doencaneurocognitiva",
         "title": "Doença Neurocognitiva",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "obesidade": {
         "id": "/properties/obesidade",
         "title": "Obesidade",
         "description": "IMC > 29,9kg/m2",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "obesidademorbida": {
         "id": "/properties/obesidademorbida",
         "title": "Obesidade Mórbida",
         "description": "IMC > 40kg/m2",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "gravidez": {
         "id": "/properties/gravidez",
         "title": "Gravidez",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
-
       "oseltamivir": {
         "id": "/properties/oseltamivir",
         "title": "Oseltamivir",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "zanamivir": {
         "id": "/properties/zanamivir",
         "title": "Zanamivir",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "datatratamento": {
         "id": "/properties/datatratamento",
         "title": "Data do tratamento",
-        "type": "string",
+        "type": ["string", "null"],
         "format": "date"
       },
-
       "vni": {
         "id": "/properties/vni",
         "title": "Ventilação mecânica não invasiva",
         "description": "CPAP ou BIPAP",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "intubacao": {
         "id": "/properties/intubacao",
         "title": "Ventilação mecânica invasiva",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "ecmo": {
         "id": "/properties/ecmo",
         "title": "ECMO",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "dialise": {
         "id": "/properties/dialise",
         "title": "Técnica de substituição renal",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
-
-
       "zaragatoa": {
         "id": "/properties/zaragatoa",
         "title": "Zaragatoa naso ou orofaríngea",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "lavadoalveolar": {
         "id": "/properties/lavadoalveolar",
         "title": "Aspirado endotraqueal ou lavado broncoalveolar",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
       "biopsia": {
         "id": "/properties/lavadoalveolar",
         "title": "Biópsia tecidular post-mortem",
-        "type": "boolean"
+        "type": ["boolean", "null"]
       },
-
       "serotipagem": {
         "id": "/properties/serotipagem",
         "title": "Tipo e subtipo do vírus",
@@ -447,14 +444,12 @@ angular.module('fluApp').factory('schema', function () {
           "O"         // Outro
         ]
       },
-
       "datalaboratorio": {
         "id": "/properties/datalaboratorio",
         "title": "Data da confirmação laboratorial",
         "type": "string",
         "format": "date"
       },
-
       "dataalta": {
         "id": "/properties/dataalta",
         "title": "Data da alta",
@@ -462,8 +457,6 @@ angular.module('fluApp').factory('schema', function () {
         "type": "string",
         "format": "date"
       },
-
-
       "obito": {
         "id": "/properties/obito",
         "title": "Óbito?",
@@ -475,20 +468,19 @@ angular.module('fluApp').factory('schema', function () {
         "id": "/properties/dataobit",
         "title": "Data do òbito",
         "description": "Data do óbito (se aplicável)",
-        "type": "string",
+        "type": ["string", "null"],
         "format": "date"
       },
       "causademorte": {
         "id": "/properties/causademorte",
         "title": "Causa de Morte",
         "description": "Causa de morte (se aplicável)",
-        "type": "string"
+        "type": ["string", "null"]
       },
-
       "observacoes": {
         "id": "/properties/observacoes",
         "title": "Observações",
-        "type": "string"
+        "type": ["string", "null"]
       }
     }
   };
