@@ -12,23 +12,24 @@ angular.module('fluApp').factory('schema', function () {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "http://example.com/example.json",
     "type": "object",
-    /*
     "required": [
       "hospital",
       "numprocessoclinico",
       "datadeadmissao",
-      "datainiciosintomas",
-      "doencacronica",
-      "datalaboratorio",
-      "dataalta",
       "sexo",
       "datanascimento",
-      "obito",
+      "datainiciosintomas",
       "vacinado",
+      "doencacronica",
+      "gravidez",
+      "feztratamento",
+      "fezprocedimento",
+      "colheuamostrabiologica",
       "serotipagem",
-      "feztratamento"
+      "datalaboratorio",
+      "dataalta",
+      "obito"
     ],
-    */
     "properties": {
       "hospital": {
         "id": "/properties/hospital",
@@ -36,6 +37,7 @@ angular.module('fluApp').factory('schema', function () {
         "description": "Hospital/Centro Hospitalar",
         "type": "string",
         "enum": [
+          /*
           "British Hospital Lisbon XXI, S.A.",
           "British Hospital Management Care, SA",
           "Centro de Oncologia Prof. Doutor José Conde",
@@ -194,13 +196,37 @@ angular.module('fluApp').factory('schema', function () {
           "Maternidade Dr. Daniel de Matos (Centro Hospitalar e Universitário de Coimbra, EPE)",
           "Maternidade Júlio Dinis (Centro Hospitalar do Porto, EPE)",
           "Misericórdia de Riba de Ave - Hospital Narciso Ferreira"
+          */
+          "British Hospital",
+          "Centro Hospitalar Cova da Beira - Hospital Pêro da Covilhã",
+          "Centro Hospitalar de São João - Hospital São João",
+          "Centro Hospitalar do Alto Ave - Hospital da Senhora da Oliveira, Guimarães",
+          "Centro Hospitalar e Universitário de Coimbra - Hospitais da Universidade de Coimbra",
+          "Centro Hospitalar Lisboa Central - Hospital Curry Cabral",
+          "Centro Hospitalar Lisboa Central - Hospital D. Estefânia",
+          "Centro Hospitalar Lisboa Central - Hospital Santa Marta",
+          "Centro Hospitalar Lisboa Central - Hospital São José",
+          "Centro Hospitalar Lisboa Norte - Hospital de Santa Maria",
+          "Centro Hospitalar Lisboa Norte - Hospital Pulido Valente",
+          "Centro Hospitalar Lisboa Ocidental - Hospital de São Francisco Xavier",
+          "Centro Hospitalar Médio Tejo (Hospital Dr. Manoel Constâncio Abrantes)",
+          "Centro Hospitalar Tondela Viseu - Hospital de São Teotónio",
+          "CUF Descobertas",
+          "Hospital Beatriz Ângelo",
+          "Hospital de Cascais Dr. José de Almeida",
+          "Hospital do Divino Espírito Santo de Ponta Delgada (Açores)",
+          "Hospital dos Lusíadas",
+          "Hospital Professor Doutor Fernando Fonseca",
+          "Hospital Vila Franca de Xira",
+          "Unidade Local de Saúde Castelo Branco - Hospital Amato Lusitano",
+          "Unidade Local de Saúde do Litoral Alentejano - Hospital do Litoral Alentejano"
         ]
       },
       "numprocessoclinico": {
         "id": "/properties/numprocessoclinico",
         "title": "N.º processo clínico",
         "description": "Número do processo clínico no hospital",
-        "type": "integer"
+        "type": "string"
       },
       "datadeadmissao": {
         "id": "/properties/datadeadmissao",
@@ -214,7 +240,7 @@ angular.module('fluApp').factory('schema', function () {
         "title": "Sexo",
         "description": "Sexo do utente",
         "type": "string",
-        "enum": ["M", "F", "I"]
+        "enum": ["M", "F", "O"]
       },
       "datanascimento": {
         "id": "/properties/datanascimento",
@@ -430,6 +456,12 @@ angular.module('fluApp').factory('schema', function () {
         "id": "/properties/dialise",
         "title": "Técnica de substituição renal",
         "type": ["boolean", "null"]
+      },
+      "colheuamostrabiologica": {
+        "id": "/properties/colheuamostrabiologica",
+        "title": "Colheu amostra bioológica",
+        "type": "string",
+        "enum": ["Y", "N", "UNK"]
       },
       "zaragatoa": {
         "id": "/properties/zaragatoa",

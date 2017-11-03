@@ -47,6 +47,13 @@ angular.module('fluApp').factory('formDefinition', function () {
         },
         {
           key: 'sexo',
+          type: "radiobuttons",
+          titleMap: [
+            { value: "M", name: "Masculino" },
+            { value: "F", name: "Feminino" },
+            { value: "O", name: "Outro" }
+          ],
+          description: "Transsexuais devem ser incluidos em 'outro'",
           validationMessage: {
             'gravidezNoHomem': 'Não pode seleccionar sexo masculino e gravidez'
           },
@@ -55,7 +62,7 @@ angular.module('fluApp').factory('formDefinition', function () {
               if (!form.gravidez || !sexo) {
                 return true;
               }
-              return !(form.gravidez && sexo === 'M');
+              return !(form.gravidez === "Y" && sexo === 'M');
             }
           }
         },
@@ -195,9 +202,24 @@ angular.module('fluApp').factory('formDefinition', function () {
       type: "fieldset",
       title: "Amostra Biológica",
       items: [
-        { key: 'zaragatoa'},
-        { key: 'lavadoalveolar'},
-        { key: 'biopsia'}
+        {
+          key: "colheuamostrabiologica",
+          type: "radiobuttons",
+          titleMap: [
+            { value: "Y", name: "Sim" },
+            { value: "N", name: "Não" },
+            { value: "UNK", name: "Desconhecido" }
+          ]
+        },
+        {
+          type: "fieldset",
+          condition: 'model.colheuamostrabiologica === "Y"',
+          items: [
+            { key: 'zaragatoa'},
+            { key: 'lavadoalveolar'},
+            { key: 'biopsia'}
+          ]
+        }
       ]
     },
     {
@@ -264,7 +286,6 @@ angular.module('fluApp').factory('formDefinition', function () {
             }
           }
         },
-
         {
           key: 'obito',
           type: "radiobuttons",
@@ -274,7 +295,6 @@ angular.module('fluApp').factory('formDefinition', function () {
             { value: "UNK", name: "Desconhecido" }
           ]
         },
-
         {
           type: "fieldset",
           title: "Se óbito...",

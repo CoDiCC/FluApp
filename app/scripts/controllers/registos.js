@@ -72,7 +72,12 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uib
       function (file) {
         var data = CsvParser.parse(file);
         $scope.registos = [];
-        registos.setAll(data);
+        try {
+          registos.setAll(data);
+        } catch (e) {
+          window.alert(e);
+        }
+
         $scope.registos = registos.getAll();
       },
       function () {}
