@@ -136,6 +136,12 @@ angular.module('fluApp').factory('formDefinition', function () {
         {
           key: 'gravidez',
           description: 'Está grávida?',
+          type: "radiobuttons",
+          titleMap: [
+            { value: "Y", name: "Sim" },
+            { value: "N", name: "Não" },
+            { value: "UNK", name: "Desconhecido" }
+          ],
           validationMessage: {
             'gravidezNoHomem': 'Não pode seleccionar sexo masculino e gravidez'
           },
@@ -144,7 +150,7 @@ angular.module('fluApp').factory('formDefinition', function () {
               if (!gravidez || !form.sexo) {
                 return true;
               }
-              return !(gravidez && form.sexo === 'M');
+              return !(gravidez === 'Y' && form.sexo === 'M');
             }
           }
         }
