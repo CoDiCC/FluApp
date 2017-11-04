@@ -12,7 +12,6 @@ angular.module('fluApp').factory('schema', function () {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "http://example.com/example.json",
     "type": "object",
-    /*
     "required": [
       "hospital",
       "numprocessoclinico",
@@ -22,16 +21,13 @@ angular.module('fluApp').factory('schema', function () {
       "datainiciosintomas",
       "vacinado",
       "doencacronica",
-      "gravidez",
       "feztratamento",
       "fezprocedimento",
-      "colheuamostrabiologica",
       "serotipagem",
       "datalaboratorio",
       "dataalta",
       "obito"
     ],
-    */
     "anyOf": [
       {
         "allOf": [

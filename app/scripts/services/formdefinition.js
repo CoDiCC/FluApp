@@ -100,7 +100,7 @@ angular.module('fluApp').factory('formDefinition', function () {
           $validators: {
             inicioSintomasNoFuturo: dataFuturo,
             sintomasAntesNascimento: function(sintomas, oldValue, form) {
-              return (!form.datanascimento || !sintomas || new Date(form.datanascimento) < new Date(sintomas));
+              return (!form.datanascimento || !sintomas || new Date(form.datanascimento) <= new Date(sintomas));
             },
             sintomasAposAlta: function(sintomas, oldValue, form) {
               return (!form.dataalta || !sintomas || new Date(form.dataalta) >= new Date(sintomas));
