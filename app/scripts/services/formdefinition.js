@@ -10,10 +10,7 @@
 angular.module('fluApp').factory('formDefinition', function () {
 
   var dataFuturo = function (date) {
-    if (!date) {
-      return true;
-    }
-    return (new Date(date) <= new Date());
+    return (!date || new Date(date) <= new Date());
   };
 
   var form = [
@@ -23,8 +20,7 @@ angular.module('fluApp').factory('formDefinition', function () {
       items: [
         { key: 'hospital' },
         { key: 'numprocessoclinico' },
-        {
-          key: 'datadeadmissao',
+        { key: 'datadeadmissao',
           type: 'date',
           validationMessage: {
             'datadeadmissaoNoFuturo': 'Data de admissão não pode ser no futuro',
@@ -32,21 +28,12 @@ angular.module('fluApp').factory('formDefinition', function () {
           },
           $validators: {
             dataAdmissaoAposAlta: function(dataAdmissao, oldValue, form) {
-              if (!dataAdmissao || !form.dataalta) {
-                return true;
-              }
-              return (new Date(dataAdmissao) <= new Date(form.dataalta));
+              return (!dataAdmissao || !form.dataalta || new Date(dataAdmissao) <= new Date(form.dataalta));
             },
-            datadeadmissaoNoFuturo: function(data) {
-              if (!data) {
-                return true;
-              }
-              return (new Date(data) <= new Date());
-            }
+            datadeadmissaoNoFuturo: dataFuturo
           }
         },
-        {
-          key: 'sexo',
+        { key: 'sexo',
           type: "radiobuttons",
           titleMap: [
             { value: "M", name: "Masculino" },
@@ -66,14 +53,33 @@ angular.module('fluApp').factory('formDefinition', function () {
             }
           }
         },
-        {
-          key: 'datanascimento',
+        { key: 'datanascimento',
           type: 'date',
           validationMessage: {
-            'nascimentoNoFuturo': 'Data de nascimento não pode ser numa data futura'
+            nascimentoNoFuturo: 'Data de nascimento não pode ser numa data futura',
+            nascimentoAposAdmissao: 'Data de nascimento não pode ser posterior à data de admissão',
+            nascimentoAposSintomas: 'Data de nascimento não pode ser posterior à data de início de sintomas',
+            nascimentoAposLaboratorio: 'Data de nascimento não pode ser posterior à data de resultasdo laboratorial',
+            nascimentoAposAlta: 'Data de nascimento não pode ser posterior à data de alta',
+            nascimentoAposObito: 'Data de nascimento não pode ser posterior à data de óbito'
           },
           $validators: {
-            nascimentoNoFuturo: dataFuturo
+            nascimentoNoFuturo: dataFuturo,
+            nascimentoAposAdmissao: function(dataNasc, oldValue, form) {
+              return !(form.datadeadmissao && new Date(form.datadeadmissao) < new Date(dataNasc));
+            },
+            nascimentoAposSintomas: function(dataNasc, oldValue, form) {
+              return !(form.datainiciosintomas && new Date(form.datainiciosintomas) < new Date(dataNasc));
+            },
+            nascimentoAposLaboratorio: function(dataNasc, oldValue, form) {
+              return !(form.datalaboratorio && new Date(form.datalaboratorio) < new Date(dataNasc));
+            },
+            nascimentoAposAlta: function(dataNasc, oldValue, form) {
+              return !(form.dataalta && new Date(form.dataalta) < new Date(dataNasc));
+            },
+            nascimentoAposObito: function(dataNasc, oldValue, form) {
+              return !(form.dataobito && new Date(form.dataobito) < new Date(dataNasc));
+            }
           }
         }
       ]
@@ -86,10 +92,22 @@ angular.module('fluApp').factory('formDefinition', function () {
           key: 'datainiciosintomas',
           type: "date",
           validationMessage: {
-            inicioSintomasNoFuturo: 'Início de sintomas não pode ser no futuro'
+            inicioSintomasNoFuturo: 'Data de início de sintomas não pode ser no futuro',
+            sintomasAntesNascimento: 'Data de início de sintomas não pode ser anterior à data de nascimento',
+            sintomasAposAlta: 'Data de início de sintomas não pode ser posterior à data de alta',
+            sintomasAposObito: 'Data de início de sintomas não pode ser posterior à data de óbito'
           },
           $validators: {
-            inicioSintomasNoFuturo: dataFuturo
+            inicioSintomasNoFuturo: dataFuturo,
+            sintomasAntesNascimento: function(sintomas, oldValue, form) {
+              return (!form.datanascimento || !sintomas || new Date(form.datanascimento) < new Date(sintomas));
+            },
+            sintomasAposAlta: function(sintomas, oldValue, form) {
+              return (!form.dataalta || !sintomas || new Date(form.dataalta) >= new Date(sintomas));
+            },
+            sintomasAposObito: function(sintomas, oldValue, form) {
+              return (!form.dataobito || !sintomas ||  new Date(form.dataobito) >= new Date(sintomas));
+            }
           }
         },
         {
@@ -120,7 +138,7 @@ angular.module('fluApp').factory('formDefinition', function () {
           type: "fieldset",
           condition: 'model.doencacronica === "Y"',
           items: [
-            { key: 'asma'},
+            { key: 'asma' },
             { key: 'dpoc'},
             { key: 'diabetes'},
             { key: 'doencaoncologica'},
@@ -135,8 +153,8 @@ angular.module('fluApp').factory('formDefinition', function () {
         },
         {
           key: 'gravidez',
-          description: 'Está grávida?',
           type: "radiobuttons",
+          condition: 'model.sexo === "F"',
           titleMap: [
             { value: "Y", name: "Sim" },
             { value: "N", name: "Não" },
@@ -208,24 +226,9 @@ angular.module('fluApp').factory('formDefinition', function () {
       type: "fieldset",
       title: "Amostra Biológica",
       items: [
-        {
-          key: "colheuamostrabiologica",
-          type: "radiobuttons",
-          titleMap: [
-            { value: "Y", name: "Sim" },
-            { value: "N", name: "Não" },
-            { value: "UNK", name: "Desconhecido" }
-          ]
-        },
-        {
-          type: "fieldset",
-          condition: 'model.colheuamostrabiologica === "Y"',
-          items: [
-            { key: 'zaragatoa'},
-            { key: 'lavadoalveolar'},
-            { key: 'biopsia'}
-          ]
-        }
+        { key: 'zaragatoa'},
+        { key: 'lavadoalveolar'},
+        { key: 'biopsia'}
       ]
     },
     {
@@ -236,35 +239,29 @@ angular.module('fluApp').factory('formDefinition', function () {
           key: 'serotipagem',
           titleMap: [
             { value: "UNK", name: "Desconhecido" },
-            { value: "A", name: "A, sem sub-tipo" },
-            { value: "AH1", name: "A(H1), sem sub-tipo N" },
+            { value: "A", name: "A (não subtipado)" },
+            { value: "AH1", name: "A(H1)" },
             { value: "AH1N1", name: "A(H1N1)" },
-            { value: "AH3", name: "A(H3), sem sub-tipo N" },
+            { value: "AH3", name: "A(H3)" },
             { value: "AH3N2", name: "A(H3N2)" },
-            { value: "AH5", name: "A(H5), sem sub-tipo N" },
+            { value: "AH5", name: "A(H5)" },
             { value: "AH5N1", name: "A(H5N1)" },
-            { value: "B", name: "linhagem indeterminada" },
-            { value: "BVic", name: "Influenza type B, Victoria lineage" },
-            { value: "BYam", name: "Influenza type B, Yamagata lineage" },
-            { value: "PanAH1", name: "A(H1)pdm09" },
-            { value: "PanAH1N1", name: "A(H1N1)pdm09" },
-            { value: "O", name: "Outro"}
+            { value: "B", name: "B (não subtipado)" },
+            { value: "BVic", name: "B Victoria" },
+            { value: "BYam", name: "B Yamagata" }
           ]
         },
         {
           key: 'datalaboratorio',
           type: "date",
           validationMessage: {
-            'altaAntesDeHospitalizacao': 'Data da Alta não pode ser anterior à Data de Admissão na UCI',
-          'altaNoFuturo': 'Data de alta não pode ser numa data futura'
+            'laboratorioAntesDeHospitalizacao': 'Data de confirmação laboratorial não pode ser anterior à Data de Admissão na UCI',
+            'altaNoFuturo': 'Data de confirmação laboratorial não pode ser numa data futura'
         },
           $validators: {
             altaNoFuturo: dataFuturo,
-            altaAntesDeHospitalizacao: function(dataAlta, oldValue, form) {
-              if (!dataAlta || !form.datadeadmissao) {
-                return true;
-              }
-              return (new Date(form.datadeadmissao) <= new Date(dataAlta));
+            laboratorioAntesDeHospitalizacao: function(dataLab, oldValue, form) {
+              return (!dataLab || !form.datadeadmissao || new Date(dataLab) >= new Date(form.datadeadmissao));
             }
           }
         }
@@ -280,15 +277,16 @@ angular.module('fluApp').factory('formDefinition', function () {
           type: 'date',
           validationMessage: {
             'altaAntesDeHospitalizacao': 'Data da Alta não pode ser anterior à Data de Admissão na UCI',
-            'altaNoFuturo': 'Data de alta não pode ser numa data futura'
+            'altaNoFuturo': 'Data de alta não pode ser numa data futura',
+            'obitoAntesDeAlta': 'Data de óbito não pode ser anterior à Data de Alta. Em caso de óbito durante o internamento, coloque a mesma data em ambos os campos'
           },
           $validators: {
             altaNoFuturo: dataFuturo,
             altaAntesDeHospitalizacao: function(dataAlta, oldValue, form) {
-              if (!dataAlta || !form.datadeadmissao) {
-                return true;
-              }
-              return (new Date(form.datadeadmissao) <= new Date(dataAlta));
+              return (!dataAlta || !form.datadeadmissao || new Date(form.datadeadmissao) <= new Date(dataAlta));
+            },
+            obitoAntesDeAlta: function(dataAlta, oldValue, form) {
+              return (!dataAlta || !form.dataobito || new Date(dataAlta) <= new Date(form.dataobito));
             }
           }
         },
@@ -310,10 +308,18 @@ angular.module('fluApp').factory('formDefinition', function () {
               key: 'dataobito',
               type: 'date',
               validationMessage: {
-                'dataobitoNoFuturo': 'Data do Óbito não pode ser no futuro'
+                'dataobitoNoFuturo': 'Data do Óbito não pode ser no futuro',
+                'obitoAntesDeHospitalizacao': 'Data de óbito não pode ser anterior à data de internamento',
+                'obitoAntesDeAlta': 'Data de óbito não pode ser anterior à Data de Alta. Em caso de óbito durante o internamento, coloque a mesma data em ambos os campos'
               },
               $validators: {
-                dataobitoNoFuturo: dataFuturo
+                dataobitoNoFuturo: dataFuturo,
+                obitoAntesDeHospitalizacao: function(dataObito, oldValue, form) {
+                  return (!dataObito || !form.datadeadmissao || new Date(form.datadeadmissao) <= new Date(dataObito));
+                },
+                obitoAntesDeAlta: function(dataObito, oldValue, form) {
+                  return (!dataObito || !form.dataalta || new Date(form.dataalta) <= new Date(dataObito));
+                }
               }
             }
           ]
@@ -338,7 +344,7 @@ angular.module('fluApp').factory('formDefinition', function () {
         htmlClass: 'stretch-all',
         items: [
           { type: 'submit', title: 'Carregar' },
-          { type: 'button', title: 'Reset', fieldHtmlClass: 'btn-danger'}
+          { type: 'button', title: 'Reset', onClick: "onReset()"}
         ]
       });
       return nForm;

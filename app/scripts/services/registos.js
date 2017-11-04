@@ -32,7 +32,6 @@ angular.module('fluApp').factory('registos', ['schema', function (schema) {
           nSchema.properties[prop].type = [nSchema.properties[prop].type, 'object'];
         }
       }
-
     }
   }
 
@@ -46,11 +45,8 @@ angular.module('fluApp').factory('registos', ['schema', function (schema) {
   };
 
   var validateAgainstSchema = function (record) {
-
     if (!tv4.validate(record, nSchema)) {
-      var error = tv4.error;
-      console.log(error);
-      throw new Error('in record --> ' + error.dataPath  + ' because ' + error.message);
+      throw tv4.error;
     }
     return true;
   };
@@ -106,6 +102,9 @@ angular.module('fluApp').factory('registos', ['schema', function (schema) {
     reset: function () {
       data = [];
       return data;
+    },
+    validateRecord: function (record) {
+      return validateAgainstSchema(record);
     }
   };
 

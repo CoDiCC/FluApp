@@ -20,12 +20,11 @@ angular.module('fluApp').controller('FormularioCtrl', ['$scope', 'registos', 'sc
   });
 
   $scope.onReset = function (form) {
-
+    $scope.model = {};
     if (form) {
       form.$setPristine();
       form.$setUntouched();
     }
-    $scope.model = {};
     $scope.$broadcast('schemaFormRedraw');
   };
 
@@ -40,6 +39,24 @@ angular.module('fluApp').controller('FormularioCtrl', ['$scope', 'registos', 'sc
         $scope.model[item] = new Date($scope.model[item]);
       }
     }
+
+    // reset errors
+    $scope.$broadcast('schemaForm.error.doencacronica','doencacronicaNaoSeleccionada', true);
+
+    // validate first
+    try {
+      registos.validateRecord($scope.model);
+    } catch (e) {
+
+      if (!angular.isUndefined(e.dataPath) && e.dataPath === "" && angular.isArray(e.subErrors)) {
+        for (var i = 0; i < e.subErrors.length; ++i) {
+          if (e.subErrors[i].dataPath === '/doencacronica') {
+            $scope.$broadcast('schemaForm.error.doencacronica','doencacronicaNaoSeleccionada', 'Tendo seleccionado o campo "Doença Crónica" como "Sim", deverá seleccionar pelo menos um destes valores');
+          }
+        }
+      }
+    }
+
 
     if (!form.$valid) {
       window.alert('O formulário tem erros. Por favor verifique a informação (assinalada a vermelho).');
