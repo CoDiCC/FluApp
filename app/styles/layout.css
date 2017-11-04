@@ -16,6 +16,7 @@ html, body {
 #header-container {
   display: flex;
   height: 150px;
+  position: relative;
 }
 
 #header-container>div {
@@ -37,6 +38,11 @@ html, body {
   height: 100px;
   line-height: 100px;
 
+}
+
+.logo-dgs {
+  position: absolute;
+  right: 0;
 }
 
 /**
