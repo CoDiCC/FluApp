@@ -244,8 +244,8 @@ angular.module('fluApp').factory('formDefinition', function () {
             { value: "AH1N1", name: "A(H1N1)" },
             { value: "AH3", name: "A(H3)" },
             { value: "AH3N2", name: "A(H3N2)" },
-            { value: "AH5", name: "A(H5)" },
-            { value: "AH5N1", name: "A(H5N1)" },
+            /*{ value: "AH5", name: "A(H5)" },*/
+            /*{ value: "AH5N1", name: "A(H5N1)" },*/
             { value: "B", name: "B (não subtipado)" },
             { value: "BVic", name: "B Victoria" },
             { value: "BYam", name: "B Yamagata" }
