@@ -15,32 +15,37 @@ html, body {
 
 #header-container {
   display: flex;
-  height: 150px;
+  height: 50px;
   position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 #header-container>div {
-  margin-top: 25px;
-  margin-bottom: 25px;
-  line-height: 100px;
+  line-height: 50px;
 }
 
 #header-container>.logo>img {
-  height: 100px;
+  height: 50px;
 }
 #header-container>.logo-text {
-  margin-left: 25px;
+  margin-left: 10px;
 }
 
 #header-container>.logo-text>h1 {
   margin: 0;
   padding: 0;
-  height: 100px;
-  line-height: 100px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 2em;
+}
 
+#header-container>.logo-text>h2 {
+  font-size: 1.5em;
 }
 
 .logo-dgs {
+  display: none;
   position: absolute;
   right: 0;
 }
@@ -49,23 +54,13 @@ html, body {
  * CONTENT CONTAINER (tab-content)
  */
 .tabs-wrapper {
-  height: calc(100% - 200px);
+  /*height: calc(100% - 200px);*/
+  height: calc(100% - 110px);
 }
 .tab-content {
   overflow: auto;
   height: calc(100% - 50px);
 }
-
-/** scrollbars
-.tab-content {
-  overflow: hidden;
-  padding-right: 17px;
-}
-.tab-content:hover {
-  padding-right: 0;
-  overflow: auto;
-}
-*/
 
 #main-footer {
   position: absolute;
@@ -83,12 +78,6 @@ html, body {
 
   #registoForm {
     margin-right: 10px;
-    /*
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: space-between;
-    */
   }
   #registoForm>fieldset {
     margin-top: 20px;
@@ -105,19 +94,64 @@ html, body {
   display: inline-block;
 }
 
-
 /**
  * REGISTOS
  **/
-
 #registos .panel-button-top {
   text-align: right;
 }
 
 #registos>.panel>.panel-table-wrapper {
   overflow: auto;
-  height: calc(100vh - 400px);
+  height: calc(100vh - 340px);
 }
 
+#registos .panel {
+  margin-bottom: 0;
+}
 
+@media screen and (min-width: 768px) {  }
+@media screen and (min-width: 992px) {  }
+@media screen and (min-width: 1200px) {  }
+
+
+@media screen and (min-width: 768px) {
+  #header-container {
+    height: 150px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  #header-container>div {
+    margin-top: 25px;
+    margin-bottom: 25px;
+  }
+  #header-container>.logo>img {
+    height: 100px;
+  }
+  #header-container>.logo-text {
+    margin-left: 25px;
+  }
+  #header-container>.logo-text>h1 {
+    font-size: 4em;
+    line-height: 100px;
+  }
+  #header-container>.logo-text>h2 {
+    font-size: 2em;
+    line-height: 100px;
+  }
+  .tabs-wrapper {
+    height: calc(100% - 200px);
+  }
+  #registos>.panel>.panel-table-wrapper {
+    overflow: auto;
+    height: calc(100vh - 360px);
+  }
+}
+@media screen and (min-width: 992px) {
+  .logo-dgs {
+    display: block;
+    padding-top: 25px;
+  }
+}
+@media screen and (min-width: 1200px) {  }
 

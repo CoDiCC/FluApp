@@ -141,7 +141,6 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uib
       },
       function () {
         //cancel
-        //console.log('cancel');
       }
     );
 
