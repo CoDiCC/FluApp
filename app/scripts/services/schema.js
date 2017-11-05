@@ -217,8 +217,8 @@ angular.module('fluApp').factory('schema', function () {
       "gravidez": {
         "id": "/properties/gravidez",
         "title": "Gravidez",
-        "type": "string",
-        "enum": ["Y", "N", "UNK"]
+        "type": ["string", "null"],
+        "enum": ["Y", "N", "UNK", null]
       },
       "feztratamento": {
         "id": "/properties/feztratamento",

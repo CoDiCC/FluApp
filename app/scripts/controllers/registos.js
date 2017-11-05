@@ -75,6 +75,7 @@ angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uib
         try {
           registos.setAll(data);
         } catch (e) {
+          console.log(e);
           window.alert(e);
         }
 
