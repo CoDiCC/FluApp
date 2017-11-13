@@ -6,7 +6,7 @@ describe('Service: registos', function () {
   var registos;
 
   // load the service's module
-  beforeEach(module('fluApp'));
+  beforeEach(module('gripApp'));
 
   // load schema mock
   beforeEach(function () {

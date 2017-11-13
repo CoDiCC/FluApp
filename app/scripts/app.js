@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc overview
- * @name fluApp
+ * @name gripApp
  * @description
- * # fluApp
+ * # gripApp
  *
  * Main module of the application.
  */
-angular.module('fluApp', [
+angular.module('gripApp', [
     'ngAnimate',
     'ngCookies',
     'ngSanitize',

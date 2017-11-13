@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name fluApp.controller:FormularioCtrl
+ * @name gripApp.controller:FormularioCtrl
  * @description
  * # FormularioCtrl
- * Controller of the fluApp
+ * Controller of the gripApp
  */
-angular.module('fluApp').controller('FormularioCtrl', ['$scope', 'registos', 'schema', 'formDefinition', function ($scope, registos, schema, formDefinition) {
+angular.module('gripApp').controller('FormularioCtrl', ['$scope', 'registos', 'schema', 'formDefinition', function ($scope, registos, schema, formDefinition) {
   $scope.model = {};
   $scope.schema = schema;
   $scope.form = formDefinition.newForm();

@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name fluApp.formDefinition
+ * @name gripApp.formDefinition
  * @description
  * # formDefinition
- * Factory in the fluApp.
+ * Factory in the gripApp.
  */
-angular.module('fluApp').factory('formDefinition', function () {
+angular.module('gripApp').factory('formDefinition', function () {
 
   var dataFuturo = function (date) {
     return (!date || new Date(date) <= new Date());

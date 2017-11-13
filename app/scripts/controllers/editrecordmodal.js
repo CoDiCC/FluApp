@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name fluApp.controller:EditrecordmodalCtrl
+ * @name gripApp.controller:EditrecordmodalCtrl
  * @description
  * # EditrecordmodalCtrl
- * Controller of the fluApp
+ * Controller of the gripApp
  */
-angular.module('fluApp').controller('EditrecordmodalCtrl', [
+angular.module('gripApp').controller('EditrecordmodalCtrl', [
   '$uibModalInstance',
   '$scope',
   'registos',

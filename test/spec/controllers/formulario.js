@@ -3,7 +3,7 @@
 describe('Controller: FormularioCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('fluApp'));
+  beforeEach(module('gripApp'));
 
   var FormulariocontrollerCtrl,
     scope;

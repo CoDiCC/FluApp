@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name fluApp.schema
+ * @name gripApp.schema
  * @description
  * # schema
- * Factory in the fluApp.
+ * Factory in the gripApp.
  */
-angular.module('fluApp').factory('schema', function () {
+angular.module('gripApp').factory('schema', function () {
   return {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "id": "http://example.com/example.json",

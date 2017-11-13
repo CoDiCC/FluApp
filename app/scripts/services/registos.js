@@ -3,12 +3,12 @@
 
 /**
  * @ngdoc service
- * @name fluApp.records
+ * @name gripApp.records
  * @description
  * # records
- * Factory in the fluApp.
+ * Factory in the gripApp.
  */
-angular.module('fluApp').factory('registos', ['schema', function (schema) {
+angular.module('gripApp').factory('registos', ['schema', function (schema) {
 
   var headers = [];
   var props = [];

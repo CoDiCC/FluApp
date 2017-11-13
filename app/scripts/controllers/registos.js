@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name fluApp.controller:RegistosCtrl
+ * @name gripApp.controller:RegistosCtrl
  * @description
  * # RegistosCtrl
- * Controller of the fluApp
+ * Controller of the gripApp
  */
-angular.module('fluApp').controller('RegistosCtrl', ['$scope', 'registos', '$uibModal', 'CsvParser', function ($scope, registos, $uibModal, CsvParser) {
+angular.module('gripApp').controller('RegistosCtrl', ['$scope', 'registos', '$uibModal', 'CsvParser', function ($scope, registos, $uibModal, CsvParser) {
 
   $scope.headers = registos.getHeaders(true);
   $scope.props = registos.getProps();

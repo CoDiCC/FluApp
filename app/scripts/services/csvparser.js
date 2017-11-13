@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc service
- * @name fluApp.CsvParser
+ * @name gripApp.CsvParser
  * @description
  * # CsvParser
- * Service in the fluApp.
+ * Service in the gripApp.
  */
-angular.module('fluApp').service('CsvParser', function () {
+angular.module('gripApp').service('CsvParser', function () {
 
   var delimiter = ';';
 

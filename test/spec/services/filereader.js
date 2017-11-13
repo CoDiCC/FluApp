@@ -3,7 +3,7 @@
 describe('Service: FileReader', function () {
 
   // load the controller's module
-  beforeEach(module('fluApp'));
+  beforeEach(module('gripApp'));
 
   // instantiate service
   var FileReader, MockFileReader, $window, $scope;

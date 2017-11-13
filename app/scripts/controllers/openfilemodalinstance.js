@@ -2,12 +2,12 @@
 
 /**
  * @ngdoc function
- * @name fluApp.controller:OpenFileModalInstanceCtrl
+ * @name gripApp.controller:OpenFileModalInstanceCtrl
  * @description
  * # OpenfilemodalinstanceCtrl
- * Controller of the fluApp
+ * Controller of the gripApp
  */
-angular.module('fluApp').controller('OpenFileModalInstanceCtrl', ['$uibModalInstance', '$scope', 'FileReader', function ($uibModalInstance, $scope, $FileReader) {
+angular.module('gripApp').controller('OpenFileModalInstanceCtrl', ['$uibModalInstance', '$scope', 'FileReader', function ($uibModalInstance, $scope, $FileReader) {
   $scope.file = null;
   $scope.ok = function () {
     if (!$scope.file) {
@@ -22,7 +22,7 @@ angular.module('fluApp').controller('OpenFileModalInstanceCtrl', ['$uibModalInst
   };
 }]);
 
-angular.module('fluApp').directive("ngFileSelect", function () {
+angular.module('gripApp').directive("ngFileSelect", function () {
   return {
     link: function ($scope, el) {
       el.bind("change", function (e) {

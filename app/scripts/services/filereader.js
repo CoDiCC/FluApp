@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc service
- * @name fluApp.filereader
+ * @name gripApp.filereader
  * @description
  * # filereader
- * Service in the fluApp.
+ * Service in the gripApp.
  *
  * USAGE
  * -----
@@ -45,7 +45,7 @@
  *
  *
  */
-angular.module('fluApp').factory('FileReader', ['$q', '$window', function ($q, $window) {
+angular.module('gripApp').factory('FileReader', ['$q', '$window', function ($q, $window) {
 
   // Wrap the onLoad event in the promise
   var onLoad = function (reader, deferred, scope) {

@@ -3,7 +3,7 @@
 describe('Service: CsvParser', function () {
 
   // load the service's module
-  beforeEach(module('fluApp'));
+  beforeEach(module('gripApp'));
 
   // instantiate service
   var CsvParser;
