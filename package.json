@@ -1,5 +1,6 @@
 {
   "name": "gripapp",
+  "version": "1.0.0",
   "private": true,
   "devDependencies": {
     "angular": "^1.6.6",
@@ -27,6 +28,7 @@
     "grunt-postcss": "^0.5.5",
     "grunt-svgmin": "^2.0.0",
     "grunt-usemin": "^3.0.0",
+    "grunt-version-bump": "^1.0.8",
     "grunt-wiredep": "^2.0.0",
     "jasmine-core": "^2.8.0",
     "jit-grunt": "^0.9.1",

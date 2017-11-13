@@ -440,6 +440,10 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    version_bump: {
+      files: ['package.json']
     }
   });
 
@@ -486,7 +490,7 @@ module.exports = function (grunt) {
     'cdnify',
     'cssmin',
     'uglify',
-    //'filerev',
+    'filerev',
     'usemin',
     'htmlmin',
     'clean:docs',
