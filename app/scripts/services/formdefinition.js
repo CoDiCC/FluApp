@@ -273,14 +273,28 @@ angular.module('gripApp').factory('formDefinition', function () {
       title: "Alta/Óbito",
       items: [
         {
+          key: 'alta',
+          type: "radiobuttons",
+          titleMap: [
+            { value: "Y", name: "Sim" },
+            { value: "N", name: "Não" },
+            { value: "UNK", name: "Desconhecido" }
+          ]
+        },
+        {
           key: 'dataalta',
           type: 'date',
+          condition: 'model.alta === "Y"',
           validationMessage: {
+            'altaSemData' : 'Assinalado que o utente tem alta, mas a data de alta não foi especificada',
             'altaAntesDeHospitalizacao': 'Data da Alta não pode ser anterior à Data de Admissão na UCI',
             'altaNoFuturo': 'Data de alta não pode ser numa data futura',
             'obitoAntesDeAlta': 'Data de óbito não pode ser anterior à Data de Alta. Em caso de óbito durante o internamento, coloque a mesma data em ambos os campos'
           },
           $validators: {
+            altaSemData: function(dataAlta, oldValue, form) {
+              return (form.alta === 'Y' && dataAlta);
+            },
             altaNoFuturo: dataFuturo,
             altaAntesDeHospitalizacao: function(dataAlta, oldValue, form) {
               return (!dataAlta || !form.datadeadmissao || new Date(form.datadeadmissao) <= new Date(dataAlta));
@@ -308,11 +322,15 @@ angular.module('gripApp').factory('formDefinition', function () {
               key: 'dataobito',
               type: 'date',
               validationMessage: {
+                'obitoSemData' : 'Assinalado que o utente faleceu, mas a data de óbito não foi especificada',
                 'dataobitoNoFuturo': 'Data do Óbito não pode ser no futuro',
                 'obitoAntesDeHospitalizacao': 'Data de óbito não pode ser anterior à data de internamento',
                 'obitoAntesDeAlta': 'Data de óbito não pode ser anterior à Data de Alta. Em caso de óbito durante o internamento, coloque a mesma data em ambos os campos'
               },
               $validators: {
+                obitoSemData: function(dataAlta, oldValue, form) {
+                  return (form.alta === 'Y' && dataAlta);
+                },
                 dataobitoNoFuturo: dataFuturo,
                 obitoAntesDeHospitalizacao: function(dataObito, oldValue, form) {
                   return (!dataObito || !form.datadeadmissao || new Date(form.datadeadmissao) <= new Date(dataObito));

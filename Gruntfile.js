@@ -442,7 +442,7 @@ module.exports = function (grunt) {
       }
     },
 
-    version_bump: {
+    version_bump: {// jshint ignore:line
       files: ['package.json']
     }
   });

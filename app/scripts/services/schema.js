@@ -25,7 +25,7 @@ angular.module('gripApp').factory('schema', function () {
       "fezprocedimento",
       "serotipagem",
       "datalaboratorio",
-      "dataalta",
+      "alta",
       "obito"
     ],
     "anyOf": [
@@ -314,6 +314,13 @@ angular.module('gripApp').factory('schema', function () {
         "title": "Data da confirmação laboratorial",
         "type": "string",
         "format": "date"
+      },
+      "alta": {
+        "id": "/properties/alta",
+        "title": "Alta?",
+        "description": "O utente teve alta?",
+        "type": "string",
+        "enum": ["Y", "N", "UNK"]
       },
       "dataalta": {
         "id": "/properties/dataalta",

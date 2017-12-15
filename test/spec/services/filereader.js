@@ -23,7 +23,7 @@ describe('Service: FileReader', function () {
           this.onerror();
         }
       },
-      readAsText: function (file, encoding) {
+      readAsText: function (file) {
         if (file === 'file') {
           this.result = 'readedFile';
           this.onload();
