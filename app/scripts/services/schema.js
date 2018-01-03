@@ -326,7 +326,7 @@ angular.module('gripApp').factory('schema', function () {
         "id": "/properties/dataalta",
         "title": "Data da alta",
         "description": "Data de Alta na UCI",
-        "type": "string",
+        "type": ["string", "null"],
         "format": "date"
       },
       "obito": {
