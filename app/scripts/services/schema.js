@@ -110,7 +110,7 @@ angular.module('gripApp').factory('schema', function () {
         "id": "/properties/numprocessoclinico",
         "title": "N.º processo clínico",
         "description": "Número do processo clínico no hospital",
-        "type": "string"
+        "type": ["string", "integer"]
       },
       "datadeadmissao": {
         "id": "/properties/datadeadmissao",
