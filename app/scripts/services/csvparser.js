@@ -51,9 +51,9 @@ angular.module('gripApp').service('CsvParser', function () {
             } else if (value === 'FALSE' || value === 'false') {
               value = false;
 
-            // force typecast to Integer
-            } else if (/^\d+$/.test(value)) {
-              value = parseInt(value);
+            // force typecast to Integer (removed)
+            //} else if (/^\d+$/.test(value)) {
+            //  value = parseInt(value);
             }
 
             lineObj[headers[c]] = value;
