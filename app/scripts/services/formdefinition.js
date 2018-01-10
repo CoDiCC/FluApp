@@ -255,14 +255,14 @@ angular.module('gripApp').factory('formDefinition', function () {
           key: 'datalaboratorio',
           type: "date",
           validationMessage: {
-            'laboratorioAntesDeHospitalizacao': 'Data de confirmação laboratorial não pode ser anterior à Data de Admissão na UCI',
+            //'laboratorioAntesDeHospitalizacao': 'Data de confirmação laboratorial não pode ser anterior à Data de Admissão na UCI',
             'altaNoFuturo': 'Data de confirmação laboratorial não pode ser numa data futura'
         },
           $validators: {
             altaNoFuturo: dataFuturo,
-            laboratorioAntesDeHospitalizacao: function(dataLab, oldValue, form) {
+            /*laboratorioAntesDeHospitalizacao: function(dataLab, oldValue, form) {
               return (!dataLab || !form.datadeadmissao || new Date(dataLab) >= new Date(form.datadeadmissao));
-            }
+            }*/
           }
         }
       ]
